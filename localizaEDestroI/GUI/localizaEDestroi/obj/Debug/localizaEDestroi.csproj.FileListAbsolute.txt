@@ -1,0 +1,92 @@
+C:\Users\RSI\Desktop\deletorrrr\localizaEDestroi\localizaEDestroi\bin\Debug\localizaEDestroi.exe.config
+C:\Users\RSI\Desktop\deletorrrr\localizaEDestroi\localizaEDestroi\bin\Debug\localizaEDestroi.exe
+C:\Users\RSI\Desktop\deletorrrr\localizaEDestroi\localizaEDestroi\bin\Debug\localizaEDestroi.pdb
+C:\Users\RSI\Desktop\deletorrrr\localizaEDestroi\localizaEDestroi\obj\Debug\localizaEDestroi.csprojAssemblyReference.cache
+C:\Users\RSI\Desktop\deletorrrr\localizaEDestroi\localizaEDestroi\obj\Debug\localizaEDestroi.Form1.resources
+C:\Users\RSI\Desktop\deletorrrr\localizaEDestroi\localizaEDestroi\obj\Debug\localizaEDestroi.Properties.Resources.resources
+C:\Users\RSI\Desktop\deletorrrr\localizaEDestroi\localizaEDestroi\obj\Debug\localizaEDestroi.csproj.GenerateResource.cache
+C:\Users\RSI\Desktop\deletorrrr\localizaEDestroi\localizaEDestroi\obj\Debug\localizaEDestroi.csproj.CoreCompileInputs.cache
+C:\Users\RSI\Desktop\deletorrrr\localizaEDestroi\localizaEDestroi\obj\Debug\localizaEDestroi.exe
+C:\Users\RSI\Desktop\deletorrrr\localizaEDestroi\localizaEDestroi\obj\Debug\localizaEDestroi.pdb
+C:\Users\lucas\Documents\Repositorios GIT\Visual Studio\C#\localizaEDestroi\localizaEDestroi\bin\Debug\localizaEDestroi.exe.config
+C:\Users\lucas\Documents\Repositorios GIT\Visual Studio\C#\localizaEDestroi\localizaEDestroi\bin\Debug\localizaEDestroi.exe
+C:\Users\lucas\Documents\Repositorios GIT\Visual Studio\C#\localizaEDestroi\localizaEDestroi\bin\Debug\localizaEDestroi.pdb
+C:\Users\lucas\Documents\Repositorios GIT\Visual Studio\C#\localizaEDestroi\localizaEDestroi\obj\Debug\localizaEDestroi.csprojResolveAssemblyReference.cache
+C:\Users\lucas\Documents\Repositorios GIT\Visual Studio\C#\localizaEDestroi\localizaEDestroi\obj\Debug\localizaEDestroi.Form1.resources
+C:\Users\lucas\Documents\Repositorios GIT\Visual Studio\C#\localizaEDestroi\localizaEDestroi\obj\Debug\localizaEDestroi.Properties.Resources.resources
+C:\Users\lucas\Documents\Repositorios GIT\Visual Studio\C#\localizaEDestroi\localizaEDestroi\obj\Debug\localizaEDestroi.csproj.GenerateResource.Cache
+C:\Users\lucas\Documents\Repositorios GIT\Visual Studio\C#\localizaEDestroi\localizaEDestroi\obj\Debug\localizaEDestroi.csproj.CoreCompileInputs.cache
+C:\Users\lucas\Documents\Repositorios GIT\Visual Studio\C#\localizaEDestroi\localizaEDestroi\obj\Debug\localizaEDestroi.exe
+C:\Users\lucas\Documents\Repositorios GIT\Visual Studio\C#\localizaEDestroi\localizaEDestroi\obj\Debug\localizaEDestroi.pdb
+C:\Users\RSI\Desktop\deletorrrr\backup\localizaEDestroi\localizaEDestroi\bin\Debug\localizaEDestroi.exe.config
+C:\Users\RSI\Desktop\deletorrrr\backup\localizaEDestroi\localizaEDestroi\bin\Debug\localizaEDestroi.exe
+C:\Users\RSI\Desktop\deletorrrr\backup\localizaEDestroi\localizaEDestroi\bin\Debug\localizaEDestroi.pdb
+C:\Users\RSI\Desktop\deletorrrr\backup\localizaEDestroi\localizaEDestroi\obj\Debug\localizaEDestroi.csprojAssemblyReference.cache
+C:\Users\RSI\Desktop\deletorrrr\backup\localizaEDestroi\localizaEDestroi\obj\Debug\localizaEDestroi.Form1.resources
+C:\Users\RSI\Desktop\deletorrrr\backup\localizaEDestroi\localizaEDestroi\obj\Debug\localizaEDestroi.Properties.Resources.resources
+C:\Users\RSI\Desktop\deletorrrr\backup\localizaEDestroi\localizaEDestroi\obj\Debug\localizaEDestroi.csproj.GenerateResource.cache
+C:\Users\RSI\Desktop\deletorrrr\backup\localizaEDestroi\localizaEDestroi\obj\Debug\localizaEDestroi.csproj.CoreCompileInputs.cache
+C:\Users\RSI\Desktop\deletorrrr\backup\localizaEDestroi\localizaEDestroi\obj\Debug\localizaEDestroi.exe
+C:\Users\RSI\Desktop\deletorrrr\backup\localizaEDestroi\localizaEDestroi\obj\Debug\localizaEDestroi.pdb
+C:\Users\lucas\Desktop\localizaEDestroi\localizaEDestroi\bin\Debug\localizaEDestroi.exe.config
+C:\Users\lucas\Desktop\localizaEDestroi\localizaEDestroi\bin\Debug\localizaEDestroi.exe
+C:\Users\lucas\Desktop\localizaEDestroi\localizaEDestroi\bin\Debug\localizaEDestroi.pdb
+C:\Users\lucas\Desktop\localizaEDestroi\localizaEDestroi\obj\Debug\localizaEDestroi.csprojAssemblyReference.cache
+C:\Users\lucas\Desktop\localizaEDestroi\localizaEDestroi\obj\Debug\localizaEDestroi.Form1.resources
+C:\Users\lucas\Desktop\localizaEDestroi\localizaEDestroi\obj\Debug\localizaEDestroi.Properties.Resources.resources
+C:\Users\lucas\Desktop\localizaEDestroi\localizaEDestroi\obj\Debug\localizaEDestroi.csproj.GenerateResource.cache
+C:\Users\lucas\Desktop\localizaEDestroi\localizaEDestroi\obj\Debug\localizaEDestroi.csproj.CoreCompileInputs.cache
+C:\Users\lucas\Desktop\localizaEDestroi\localizaEDestroi\obj\Debug\localizaEDestroi.exe
+C:\Users\lucas\Desktop\localizaEDestroi\localizaEDestroi\obj\Debug\localizaEDestroi.pdb
+C:\Users\RSI\Desktop\deletorrrr\VErsão teste\localizaEDestroi\localizaEDestroi\bin\Debug\localizaEDestroi.exe.config
+C:\Users\RSI\Desktop\deletorrrr\VErsão teste\localizaEDestroi\localizaEDestroi\bin\Debug\localizaEDestroi.exe
+C:\Users\RSI\Desktop\deletorrrr\VErsão teste\localizaEDestroi\localizaEDestroi\bin\Debug\localizaEDestroi.pdb
+C:\Users\RSI\Desktop\deletorrrr\VErsão teste\localizaEDestroi\localizaEDestroi\obj\Debug\localizaEDestroi.csprojAssemblyReference.cache
+C:\Users\RSI\Desktop\deletorrrr\VErsão teste\localizaEDestroi\localizaEDestroi\obj\Debug\localizaEDestroi.Form1.resources
+C:\Users\RSI\Desktop\deletorrrr\VErsão teste\localizaEDestroi\localizaEDestroi\obj\Debug\localizaEDestroi.Properties.Resources.resources
+C:\Users\RSI\Desktop\deletorrrr\VErsão teste\localizaEDestroi\localizaEDestroi\obj\Debug\localizaEDestroi.csproj.GenerateResource.cache
+C:\Users\RSI\Desktop\deletorrrr\VErsão teste\localizaEDestroi\localizaEDestroi\obj\Debug\localizaEDestroi.csproj.CoreCompileInputs.cache
+C:\Users\RSI\Desktop\deletorrrr\VErsão teste\localizaEDestroi\localizaEDestroi\obj\Debug\localizaEDestroi.exe
+C:\Users\RSI\Desktop\deletorrrr\VErsão teste\localizaEDestroi\localizaEDestroi\obj\Debug\localizaEDestroi.pdb
+C:\Users\lucas\Desktop\deletorrrr\localizaEDestroi\localizaEDestroi\bin\Debug\localizaEDestroi.exe.config
+C:\Users\lucas\Desktop\deletorrrr\localizaEDestroi\localizaEDestroi\bin\Debug\localizaEDestroi.exe
+C:\Users\lucas\Desktop\deletorrrr\localizaEDestroi\localizaEDestroi\bin\Debug\localizaEDestroi.pdb
+C:\Users\lucas\Desktop\deletorrrr\localizaEDestroi\localizaEDestroi\obj\Debug\localizaEDestroi.csprojAssemblyReference.cache
+C:\Users\lucas\Desktop\deletorrrr\localizaEDestroi\localizaEDestroi\obj\Debug\localizaEDestroi.Form1.resources
+C:\Users\lucas\Desktop\deletorrrr\localizaEDestroi\localizaEDestroi\obj\Debug\localizaEDestroi.Properties.Resources.resources
+C:\Users\lucas\Desktop\deletorrrr\localizaEDestroi\localizaEDestroi\obj\Debug\localizaEDestroi.csproj.GenerateResource.cache
+C:\Users\lucas\Desktop\deletorrrr\localizaEDestroi\localizaEDestroi\obj\Debug\localizaEDestroi.csproj.CoreCompileInputs.cache
+C:\Users\lucas\Desktop\deletorrrr\localizaEDestroi\localizaEDestroi\obj\Debug\localizaEDestroi.exe
+C:\Users\lucas\Desktop\deletorrrr\localizaEDestroi\localizaEDestroi\obj\Debug\localizaEDestroi.pdb
+C:\Users\RSI\Desktop\deletorrrr\localizaEDestroi\localizaEDestroi\bin\Debug\localizaEDestroi.exe.manifest
+C:\Users\RSI\Desktop\deletorrrr\localizaEDestroi\localizaEDestroi\bin\Debug\localizaEDestroi.application
+C:\Users\RSI\Desktop\deletorrrr\localizaEDestroi\localizaEDestroi\obj\Debug\localizaEDestroi.exe.manifest
+C:\Users\RSI\Desktop\deletorrrr\localizaEDestroi\localizaEDestroi\obj\Debug\localizaEDestroi.application
+C:\Users\lucas.rafael\Desktop\LocalizaEDestroI\Codigo fonte\localizaEDestroi_GUI\localizaEDestroi\bin\Debug\localizaEDestroi.exe.config
+C:\Users\lucas.rafael\Desktop\LocalizaEDestroI\Codigo fonte\localizaEDestroi_GUI\localizaEDestroi\bin\Debug\localizaEDestroi.exe.manifest
+C:\Users\lucas.rafael\Desktop\LocalizaEDestroI\Codigo fonte\localizaEDestroi_GUI\localizaEDestroi\bin\Debug\localizaEDestroi.application
+C:\Users\lucas.rafael\Desktop\LocalizaEDestroI\Codigo fonte\localizaEDestroi_GUI\localizaEDestroi\bin\Debug\localizaEDestroi.exe
+C:\Users\lucas.rafael\Desktop\LocalizaEDestroI\Codigo fonte\localizaEDestroi_GUI\localizaEDestroi\bin\Debug\localizaEDestroi.pdb
+C:\Users\lucas.rafael\Desktop\LocalizaEDestroI\Codigo fonte\localizaEDestroi_GUI\localizaEDestroi\obj\Debug\localizaEDestroi.csprojAssemblyReference.cache
+C:\Users\lucas.rafael\Desktop\LocalizaEDestroI\Codigo fonte\localizaEDestroi_GUI\localizaEDestroi\obj\Debug\localizaEDestroi.Form1.resources
+C:\Users\lucas.rafael\Desktop\LocalizaEDestroI\Codigo fonte\localizaEDestroi_GUI\localizaEDestroi\obj\Debug\localizaEDestroi.Properties.Resources.resources
+C:\Users\lucas.rafael\Desktop\LocalizaEDestroI\Codigo fonte\localizaEDestroi_GUI\localizaEDestroi\obj\Debug\localizaEDestroi.csproj.GenerateResource.cache
+C:\Users\lucas.rafael\Desktop\LocalizaEDestroI\Codigo fonte\localizaEDestroi_GUI\localizaEDestroi\obj\Debug\localizaEDestroi.csproj.CoreCompileInputs.cache
+C:\Users\lucas.rafael\Desktop\LocalizaEDestroI\Codigo fonte\localizaEDestroi_GUI\localizaEDestroi\obj\Debug\localizaEDestroi.exe.manifest
+C:\Users\lucas.rafael\Desktop\LocalizaEDestroI\Codigo fonte\localizaEDestroi_GUI\localizaEDestroi\obj\Debug\localizaEDestroi.application
+C:\Users\lucas.rafael\Desktop\LocalizaEDestroI\Codigo fonte\localizaEDestroi_GUI\localizaEDestroi\obj\Debug\localizaEDestroi.exe
+C:\Users\lucas.rafael\Desktop\LocalizaEDestroI\Codigo fonte\localizaEDestroi_GUI\localizaEDestroi\obj\Debug\localizaEDestroi.pdb
+C:\Users\lucas.rafael\Desktop\Programas LCSilva\localizaEDestroI\GUI\localizaEDestroi_GUI\localizaEDestroi\bin\Debug\localizaEDestroi.exe.config
+C:\Users\lucas.rafael\Desktop\Programas LCSilva\localizaEDestroI\GUI\localizaEDestroi_GUI\localizaEDestroi\bin\Debug\localizaEDestroi.exe.manifest
+C:\Users\lucas.rafael\Desktop\Programas LCSilva\localizaEDestroI\GUI\localizaEDestroi_GUI\localizaEDestroi\bin\Debug\localizaEDestroi.application
+C:\Users\lucas.rafael\Desktop\Programas LCSilva\localizaEDestroI\GUI\localizaEDestroi_GUI\localizaEDestroi\bin\Debug\localizaEDestroi.exe
+C:\Users\lucas.rafael\Desktop\Programas LCSilva\localizaEDestroI\GUI\localizaEDestroi_GUI\localizaEDestroi\bin\Debug\localizaEDestroi.pdb
+C:\Users\lucas.rafael\Desktop\Programas LCSilva\localizaEDestroI\GUI\localizaEDestroi_GUI\localizaEDestroi\obj\Debug\localizaEDestroi.csprojAssemblyReference.cache
+C:\Users\lucas.rafael\Desktop\Programas LCSilva\localizaEDestroI\GUI\localizaEDestroi_GUI\localizaEDestroi\obj\Debug\localizaEDestroi.Form1.resources
+C:\Users\lucas.rafael\Desktop\Programas LCSilva\localizaEDestroI\GUI\localizaEDestroi_GUI\localizaEDestroi\obj\Debug\localizaEDestroi.Properties.Resources.resources
+C:\Users\lucas.rafael\Desktop\Programas LCSilva\localizaEDestroI\GUI\localizaEDestroi_GUI\localizaEDestroi\obj\Debug\localizaEDestroi.csproj.GenerateResource.cache
+C:\Users\lucas.rafael\Desktop\Programas LCSilva\localizaEDestroI\GUI\localizaEDestroi_GUI\localizaEDestroi\obj\Debug\localizaEDestroi.csproj.CoreCompileInputs.cache
+C:\Users\lucas.rafael\Desktop\Programas LCSilva\localizaEDestroI\GUI\localizaEDestroi_GUI\localizaEDestroi\obj\Debug\localizaEDestroi.exe.manifest
+C:\Users\lucas.rafael\Desktop\Programas LCSilva\localizaEDestroI\GUI\localizaEDestroi_GUI\localizaEDestroi\obj\Debug\localizaEDestroi.application
+C:\Users\lucas.rafael\Desktop\Programas LCSilva\localizaEDestroI\GUI\localizaEDestroi_GUI\localizaEDestroi\obj\Debug\localizaEDestroi.exe
+C:\Users\lucas.rafael\Desktop\Programas LCSilva\localizaEDestroI\GUI\localizaEDestroi_GUI\localizaEDestroi\obj\Debug\localizaEDestroi.pdb
