@@ -64,3 +64,14 @@ C:\Users\lucas.rafael\Desktop\Programas em DEV\localizaEDestroi_CLI\localizaEDes
 C:\Users\lucas.rafael\Desktop\Programas em DEV\localizaEDestroi_CLI\localizaEDestroi_CLI\obj\Debug\localizaEDestroi_CLI.application
 C:\Users\lucas.rafael\Desktop\Programas em DEV\localizaEDestroi_CLI\localizaEDestroi_CLI\obj\Debug\localizaEDestroi_CLI.exe
 C:\Users\lucas.rafael\Desktop\Programas em DEV\localizaEDestroi_CLI\localizaEDestroi_CLI\obj\Debug\localizaEDestroi_CLI.pdb
+C:\Users\lucas.rafael\Desktop\Programas LCSilva\localizaEDestroI\CLI\localizaEDestroi_CLI\bin\Debug\localizaEDestroi_CLI.exe.config
+C:\Users\lucas.rafael\Desktop\Programas LCSilva\localizaEDestroI\CLI\localizaEDestroi_CLI\bin\Debug\localizaEDestroi_CLI.exe.manifest
+C:\Users\lucas.rafael\Desktop\Programas LCSilva\localizaEDestroI\CLI\localizaEDestroi_CLI\bin\Debug\localizaEDestroi_CLI.application
+C:\Users\lucas.rafael\Desktop\Programas LCSilva\localizaEDestroI\CLI\localizaEDestroi_CLI\bin\Debug\localizaEDestroi_CLI.exe
+C:\Users\lucas.rafael\Desktop\Programas LCSilva\localizaEDestroI\CLI\localizaEDestroi_CLI\bin\Debug\localizaEDestroi_CLI.pdb
+C:\Users\lucas.rafael\Desktop\Programas LCSilva\localizaEDestroI\CLI\localizaEDestroi_CLI\obj\Debug\localizaEDestroi_CLI.csprojAssemblyReference.cache
+C:\Users\lucas.rafael\Desktop\Programas LCSilva\localizaEDestroI\CLI\localizaEDestroi_CLI\obj\Debug\localizaEDestroi_CLI.csproj.CoreCompileInputs.cache
+C:\Users\lucas.rafael\Desktop\Programas LCSilva\localizaEDestroI\CLI\localizaEDestroi_CLI\obj\Debug\localizaEDestroi_CLI.exe.manifest
+C:\Users\lucas.rafael\Desktop\Programas LCSilva\localizaEDestroI\CLI\localizaEDestroi_CLI\obj\Debug\localizaEDestroi_CLI.application
+C:\Users\lucas.rafael\Desktop\Programas LCSilva\localizaEDestroI\CLI\localizaEDestroi_CLI\obj\Debug\localizaEDestroi_CLI.exe
+C:\Users\lucas.rafael\Desktop\Programas LCSilva\localizaEDestroI\CLI\localizaEDestroi_CLI\obj\Debug\localizaEDestroi_CLI.pdb

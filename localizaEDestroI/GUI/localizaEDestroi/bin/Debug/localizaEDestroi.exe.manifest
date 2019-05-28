@@ -43,14 +43,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="localizaEDestroi.exe" size="159656">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="localizaEDestroi.exe" size="161192">
       <assemblyIdentity name="localizaEDestroi" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>XKOxO1OVi1l0JY5FFafLujQkAcOE2FAXwhmSI04Ig9w=</dsig:DigestValue>
+        <dsig:DigestValue>djx4Sz9VVZDskh2YDdMDtdGy7c6ef2all+iHWgUjvWs=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
