@@ -9,31 +9,15 @@ namespace localizaEDestroi
 {
 
     class Program
-    {
-
-        private static string[] allfiles;  //Lista de diretorios pela pesquisa por extensão
-        private static string[] allfiles2; //Lista de diretorios pela pesquisa por nome
+    {        
 
         private static List<string> listaPorNome = new List<string>();     //List contendo o resultado da pesquisa por nome
         private static List<string> listaPorExtensao = new List<string>(); //List contendo o resultado da pesquisa por extensão
         private static List<string> logtxt = new List<string>();           //Juncao da lista por nome e lista por extensao
-        private static List<string> tempAllfiles2 = new List<string>();
-        private static List<string> listaEspecExclusao = new List<string>();
-        private static List<string> caminhoAbsolutoExclusaoEspec = new List<string>();
 
-        private static DirectoryInfo tamDir_verificador;
+        private static long tamArqDir_somador, qtdDir, tamArqExt, qtdArqExt, tamArqExt_verificador, tempoDeExecucao;
 
-        private static long tamArqDir_somador;
-        private static long qtdDir;
-        private static long tamArqExt;
-        private static long qtdArqExt;
-        private static long tamArqExt_verificador;
-
-        private static long tempoDeExecucao;
-        private static string tamTotArqExt;
-        private static string tamTotArqDir;        
-
-        private static int tamLog;
+        private static string tamTotArqExt, tamTotArqDir;              
 
         static void Main(string[] args)
         {
@@ -257,172 +241,7 @@ namespace localizaEDestroi
             }
 
             return horas.ToString() + ":" + minutos.ToString() + ":" + segundos.ToString() + ":" + milisegundos.ToString();
-        }
-
-        //Obtem o diretorio de execucao do programa
-        public static string diretorioRaiz()
-        {            
-            string diretorio = Environment.CurrentDirectory;
-            return diretorio;
-        }
-        
-        //Metodo para pesquisa por extensao de arquivos
-        public static void pesquisaPorExtensao()
-        {
-
-            string extensaoArq = "";
-
-            string[] linhas = File.ReadAllLines(localArqListExExtensao()); //Efetua a leitura do arquivo externo com os parametros da pesquisa
-
-            int contadorLinhas = linhas.Count();
-
-            //Verifica se o arquivo esta vazio
-            if (contadorLinhas == 0)
-            {
-                return;
-            }
-
-            foreach (string item in linhas)
-            {
-                extensaoArq += item;
-            }
-
-            string[] listaDeArqPorExtensao = extensaoArq.Split(';'); //Quebra o texto para obter os parametros de pesquisa por extensao
-
-            foreach (var item in listaDeArqPorExtensao)
-            {
-                //allfiles recebe o caminho absoluto de cada arquivo encontrado a cada iteração do foreach                    
-                allfiles = Directory.GetFiles(diretorioRaiz(), "*.*", SearchOption.AllDirectories).Where(s => s.EndsWith("." + item.ToString(), StringComparison.CurrentCulture)).ToArray();
-
-                foreach (var file in allfiles)
-                {
-                    string[] teste = Convert.ToString(file).Split('\\');
-                    bool verificador = false; //Usado para verificar se o caminho possui algum dos parametros do filtro
-
-                    foreach (var ch in teste)
-                    {
-                        //Filtro usado para ignorar determinadas pastas na pesquisa
-                        if (ch == "target" || ch == ".jazz5" || ch == ".git" || ch == ".metadata")
-                        {
-                            verificador = true;
-                        }
-                    }
-
-                    //Entrara na lista apenas se o caminho nao conter nenhum dos parametros do filtro
-                    if (!verificador)
-                    {
-                        listaPorExtensao.Add(Convert.ToString(file)); //listaPorExtensao recebe a variavel com o caminho absoluto
-                        Console.WriteLine(file);
-                    }
-
-                }
-
-            }
-
-            //Apos o termino da pesquisa, a lista de pesquisa atual e adicionada na lista central para gerar as informacoes no arquivo de log
-            logtxt.AddRange(listaPorExtensao);
-
-            foreach (var arqExtTam in listaPorExtensao)
-            {
-                tamArqExt_verificador = new FileInfo(arqExtTam.ToString()).Length;
-                tamArqExt += tamArqExt_verificador;
-            }
-
-            qtdArqExt = listaPorExtensao.Count; //Obtem a quantidade de arquivos por extensao encontrados na pesquisa
-            tamTotArqExt = FormataExibicaoTamanhoArquivo(tamArqExt); //Obtem o tamanho total dos arquivos encontrados na pesquisa
-        }
-
-        //Responsavel por calcular o tamanho dos diretorios encontrados na pesquisa
-        private static long TamanhoTotalDiretorio(DirectoryInfo dInfo, bool includeSubDir)
-        {
-            //percorre os arquivos da pasta e calcula o tamanho somando o tamanho de cada arquivo
-            long tamanhoTotal = dInfo.EnumerateFiles().Sum(file => file.Length);
-
-            if (includeSubDir)
-            {
-                tamanhoTotal += dInfo.EnumerateDirectories().Sum(dir => TamanhoTotalDiretorio(dir, true));
-            }
-
-            return tamanhoTotal;
-        }
-
-        //Metodo para pesquisa por diretorio de arquivos
-        public static void pesquisaPorDiretorio()
-        {            
-
-            string extensaoArq = "";
-
-            string[] linhas = File.ReadAllLines(localArqListExDiretorio());
-
-            int contadorLinhas = linhas.Count();
-
-            if (contadorLinhas == 0)
-            {
-                return;
-            }
-
-            foreach (string item in linhas)
-            {
-                extensaoArq += item;
-            }
-
-            string[] listaDeArqPorExtensao = extensaoArq.Split(';');
-
-            foreach (var item2 in listaDeArqPorExtensao)
-            {
-                //allfiles2 recebe o caminho absoluto de cada diretorio encontrado a cada iteração do foreach
-                allfiles2 = Directory.GetDirectories(diretorioRaiz(), item2.ToString(), SearchOption.AllDirectories);
-
-                foreach (var lst in allfiles2)
-                {
-                    string[] temp = Convert.ToString(lst).Split('\\');
-
-                    foreach (var verifNome in temp)
-                    {
-                        if (item2.Equals(verifNome, StringComparison.CurrentCulture))
-                        {
-                            tempAllfiles2.Add(lst);
-                        }
-                    }
-
-                }                
-
-            }
-
-            foreach (var file2 in tempAllfiles2)
-            {
-                string[] teste = Convert.ToString(file2).Split('\\');
-                bool verificador = false;
-
-                foreach (var ch in teste)
-                {
-                    if (ch == "target" || ch == ".jazz5" || ch == ".git" || ch == ".metadata")
-                    {
-                        verificador = true;
-                    }
-                }
-
-                if (!verificador)
-                {
-                    listaPorNome.Add(Convert.ToString(file2)); //listaPorNome recebe a variavel com o caminho absoluto
-                    Console.WriteLine(file2);
-                }
-
-            }
-
-            logtxt.AddRange(listaPorNome);      
-
-            foreach (var arqDirTam in listaPorNome)
-            {
-                tamDir_verificador = new DirectoryInfo(arqDirTam);
-                tamArqDir_somador += TamanhoTotalDiretorio(tamDir_verificador, true);
-            }
-
-            qtdDir += listaPorNome.Count;
-            qtdDir.ToString();
-            tamTotArqDir = FormataExibicaoTamanhoArquivo(tamArqDir_somador);
-
-        }
+        }              
 
         // O formato padrão é "0.### XB", Ex: "4.2 KB" ou "1.434 GB"
         public static string FormataExibicaoTamanhoArquivo(long i)
@@ -479,13 +298,12 @@ namespace localizaEDestroi
             leitura = (leitura / 1024);
             // retorna o número formatado com sufixo
             return leitura.ToString("0.### ") + sufixo;
-        }
+        }        
 
-        
-
+        //Metodo responsavel por gravar as informacoes no arquivo txt
         public static void geraLog()
         {
-            tamLog = logtxt.Count;
+            int tamLog = logtxt.Count;
 
             if (tamLog == 0)
             {
@@ -562,15 +380,11 @@ namespace localizaEDestroi
             
         }
 
-        public static void geratxt()
+        //Obtem o diretorio de execucao do programa
+        public static string diretorioRaiz()
         {
-            if (!File.Exists(diretorioRaiz())) //Se o diretorio de log não existir, então ele é criado
-            {
-                Directory.CreateDirectory(DirLog());
-            }
-
-            File.Create(localLog()).Close();
-
+            string diretorio = Environment.CurrentDirectory;
+            return diretorio;
         }
 
         //Diretorio do arquivo de log completo mais o nome do arquivo
@@ -620,7 +434,169 @@ namespace localizaEDestroi
             string pastaArqDeConf = "Parametros pesquisa localizaEDestroi";
             string DirLog = diretorioRaiz() + "\\" + pastaArqDeConf;
             return DirLog;
-        }    
+        }
+
+        //Metodo para pesquisa por extensao de arquivos
+        public static void pesquisaPorExtensao()
+        {
+            string[] allfiles;  //Lista de diretorios pela pesquisa por extensão
+            string[] linhas = File.ReadAllLines(localArqListExExtensao()); //Efetua a leitura do arquivo externo com os parametros da pesquisa
+            
+            string extensaoArq = "";
+
+            int contadorLinhas = linhas.Count();
+
+            //Verifica se o arquivo esta vazio
+            if (contadorLinhas == 0)
+            {
+                return;
+            }
+
+            foreach (string item in linhas)
+            {
+                extensaoArq += item;
+            }
+
+            string[] listaDeArqPorExtensao = extensaoArq.Split(';'); //Quebra o texto para obter os parametros de pesquisa por extensao
+
+            foreach (var item in listaDeArqPorExtensao)
+            {
+                //allfiles recebe o caminho absoluto de cada arquivo encontrado a cada iteração do foreach                    
+                allfiles = Directory.GetFiles(diretorioRaiz(), "*.*", SearchOption.AllDirectories).Where(s => s.EndsWith("." + item.ToString(), StringComparison.CurrentCulture)).ToArray();
+
+                foreach (var file in allfiles)
+                {
+                    string[] teste = Convert.ToString(file).Split('\\');
+                    bool verificador = false; //Usado para verificar se o caminho possui algum dos parametros do filtro
+
+                    foreach (var ch in teste)
+                    {
+                        //Filtro usado para ignorar determinadas pastas na pesquisa
+                        if (ch == "target" || ch == ".jazz5" || ch == ".git" || ch == ".metadata")
+                        {
+                            verificador = true;
+                        }
+                    }
+
+                    //Entrara na lista apenas se o caminho nao conter nenhum dos parametros do filtro
+                    if (!verificador)
+                    {
+                        listaPorExtensao.Add(Convert.ToString(file)); //listaPorExtensao recebe a variavel com o caminho absoluto
+                        Console.WriteLine(file);
+                    }
+
+                }
+
+            }
+
+            //Apos o termino da pesquisa, a lista de pesquisa atual e adicionada na lista central para gerar as informacoes no arquivo de log
+            logtxt.AddRange(listaPorExtensao);
+
+            foreach (var arqExtTam in listaPorExtensao)
+            {
+                tamArqExt_verificador = new FileInfo(arqExtTam.ToString()).Length;
+                tamArqExt += tamArqExt_verificador;
+            }
+
+            qtdArqExt = listaPorExtensao.Count; //Obtem a quantidade de arquivos por extensao encontrados na pesquisa
+            tamTotArqExt = FormataExibicaoTamanhoArquivo(tamArqExt); //Obtem o tamanho total dos arquivos encontrados na pesquisa
+        }
+
+        //Responsavel por calcular o tamanho dos diretorios encontrados na pesquisa
+        private static long TamanhoTotalDiretorio(DirectoryInfo dInfo, bool includeSubDir)
+        {
+            //percorre os arquivos da pasta e calcula o tamanho somando o tamanho de cada arquivo
+            long tamanhoTotal = dInfo.EnumerateFiles().Sum(file => file.Length);
+
+            if (includeSubDir)
+            {
+                tamanhoTotal += dInfo.EnumerateDirectories().Sum(dir => TamanhoTotalDiretorio(dir, true));
+            }
+
+            return tamanhoTotal;
+        }
+
+        //Metodo para pesquisa por diretorio de arquivos
+        public static void pesquisaPorDiretorio()
+        {
+            List<string> tempAllfiles2 = new List<string>(); //Armazena partes de um caminho para iteracao de arquivos
+
+            string[] allfiles2; //Lista de diretorios pela pesquisa por nome
+
+            DirectoryInfo tamDir_verificador;
+
+            string extensaoArq = "";
+            string[] linhas = File.ReadAllLines(localArqListExDiretorio());
+
+            int contadorLinhas = linhas.Count();
+
+            if (contadorLinhas == 0)
+            {
+                return;
+            }
+
+            foreach (string item in linhas)
+            {
+                extensaoArq += item;
+            }
+
+            string[] listaDeArqPorExtensao = extensaoArq.Split(';');
+
+            foreach (var item2 in listaDeArqPorExtensao)
+            {
+                //allfiles2 recebe o caminho absoluto de cada diretorio encontrado a cada iteração do foreach
+                allfiles2 = Directory.GetDirectories(diretorioRaiz(), item2.ToString(), SearchOption.AllDirectories);
+
+                foreach (var lst in allfiles2)
+                {
+                    string[] temp = Convert.ToString(lst).Split('\\');
+
+                    foreach (var verifNome in temp)
+                    {
+                        if (item2.Equals(verifNome, StringComparison.CurrentCulture))
+                        {
+                            tempAllfiles2.Add(lst);
+                        }
+                    }
+
+                }
+
+            }
+
+            foreach (var file2 in tempAllfiles2)
+            {                
+                string[] teste = Convert.ToString(file2).Split('\\');
+                bool verificador = false;
+
+                foreach (var ch in teste)
+                {
+                    if (ch == "target" || ch == ".jazz5" || ch == ".git" || ch == ".metadata")
+                    {
+                        verificador = true;
+                    }
+                }
+
+                if (!verificador)
+                {
+                    listaPorNome.Add(Convert.ToString(file2)); //listaPorNome recebe a variavel com o caminho absoluto
+                    Console.WriteLine(file2);
+                }
+
+            }
+
+            logtxt.AddRange(listaPorNome);
+
+            foreach (var arqDirTam in listaPorNome)
+            {
+                tamDir_verificador = new DirectoryInfo(arqDirTam);
+                tamArqDir_somador += TamanhoTotalDiretorio(tamDir_verificador, true);
+            }
+
+            qtdDir += listaPorNome.Count;
+            qtdDir.ToString();
+            tamTotArqDir = FormataExibicaoTamanhoArquivo(tamArqDir_somador);
+
+        }
 
         private static void deletarPorDiretorio()
         {
@@ -687,6 +663,18 @@ namespace localizaEDestroi
                 }
 
             }
+
+        }
+
+        //Metodo responsavel por criar o arquivo de texto do log
+        public static void geratxt()
+        {
+            if (!File.Exists(diretorioRaiz())) //Se o diretorio de log não existir, então ele é criado
+            {
+                Directory.CreateDirectory(DirLog());
+            }
+
+            File.Create(localLog()).Close();
 
         }
 
