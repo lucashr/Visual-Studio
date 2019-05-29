@@ -1,1 +1,0 @@
-Test;Tests;Teste;Testes;lib;src-testes;enum;enums;enumeration;ios;build;.sonar;.scannerwork

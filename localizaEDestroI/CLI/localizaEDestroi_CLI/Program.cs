@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Security;
-using System.Security.Permissions;
 using System.Threading;
 
 namespace localizaEDestroi
@@ -12,8 +10,6 @@ namespace localizaEDestroi
 
     class Program
     {
-        static readonly object bloqueador = new object();
-        static bool ok;
 
         private static string[] allfiles;  //Lista de diretorios pela pesquisa por extensão
         private static string[] allfiles2; //Lista de diretorios pela pesquisa por nome
@@ -44,7 +40,8 @@ namespace localizaEDestroi
             var sw = Stopwatch.StartNew();
             int milliseconds = 3000;
 
-            diretorioRaiz();
+            diretorioRaiz(); //Obtem o diretorio de execucao do programa
+            criacaoArqParametrosPesquisa(); //Cria diretorio de parametros de pesquisa do programa
 
             Console.WriteLine("------ Pesquisa iniciada ------");
 
@@ -89,37 +86,68 @@ namespace localizaEDestroi
             Console.WriteLine(tempoDeExecucao.ToString());
             tempoTotalDeExecucao();
 
-            geratxt();
-            geraLog();
+            geratxt(); //Cria o arquivo de log txt
+            geraLog(); //Armazena as informacoes das delecoes no arquivo log
 
         }
 
-        public static void exclusaoExpecifica()
+        //Cria diretorio e arquivos com parametros de pesquisa padrao
+        public static void criacaoArqParametrosPesquisa()
         {
-
-            //string[] caminhoAbsolutoExclusaoEspec = new string[6];
-            //string[] listaEspecExclusao = new string[2];
-            //List<string> exclusaoEspecSplit = new List<string>();
-
-            string[] dirCamSplit = diretorioRaiz().Split('\\');
-            string nomeDaPasta = dirCamSplit.Last();
-
-            string[]  linhas = File.ReadAllLines(@"C:\Users\lucas.rafael\Desktop\ambiente de teste\lista de exclusoes especificas.txt");
-
-            foreach (string verificadorDir in linhas)
+            if (!File.Exists(dirParametrosDePesquisa())) //Se o diretorio de configuracao nao existir, entao ele sera criado
             {
-                string[] tmp = verificadorDir.Split('\\'); //Variavel temporaria
+                Directory.CreateDirectory(dirParametrosDePesquisa());
             }
 
-            //caminhoAbsolutoExclusaoEspec[0] = @"C:\InspecaoSonar\Dev\GIT\RICARDO-PUIG\PAY\java-paysrv\pay-services\src\main\java\br\com\santander\pay\Application.java";
-            //caminhoAbsolutoExclusaoEspec[1] = @"C:\InspecaoSonar\Dev\GIT\RICARDO-PUIG\PAY\java-payappand\app\src\main\java\br\com\santander\ewallet\service\AppController.java";
-            //caminhoAbsolutoExclusaoEspec[2] = @"C:\InspecaoSonar\Dev\RTC\KPV\ORA-KPVCLIORAC-SRC";
-            //caminhoAbsolutoExclusaoEspec[3] = @"C:\InspecaoSonar\Dev\RTC\KPV\ORA-KPVCLITOOL-SRC";
-            //caminhoAbsolutoExclusaoEspec[4] = @"C:\InspecaoSonar\Dev\RTC\KPV\VB6-KPVCLIKFIP-SRC";
-            //caminhoAbsolutoExclusaoEspec[5] = @"C:\InspecaoSonar\Dev\RTC\KPV\VB6-KPVCLISYSE-SRC";
+            if (!File.Exists(localArqListExEspecificas())) //Verifica se o arquivo lista de exclusoes especificas existe
+            {
+                List<string> lista = new List<string>();
+
+                lista.Add(@"C:\InspecaoSonar\Dev\GIT\RICARDO-PUIG\PAY\java-paysrv\pay-services\src\main\java\br\com\santander\pay\Application.java@@@");
+                lista.Add(@"C:\InspecaoSonar\Dev\GIT\RICARDO-PUIG\PAY\java-payappand\app\src\main\java\br\com\santander\ewallet\service\AppController.java@@@");
+                lista.Add(@"C:\InspecaoSonar\Dev\RTC\KPV\ORA-KPVCLIORAC-SRC###");
+                lista.Add(@"C:\InspecaoSonar\Dev\RTC\KPV\ORA-KPVCLITOOL-SRC###");
+                lista.Add(@"C:\InspecaoSonar\Dev\RTC\KPV\VB6-KPVCLIKFIP-SRC###");
+                lista.Add(@"C:\InspecaoSonar\Dev\RTC\KPV\VB6-KPVCLISYSE-SRC###");
+
+                File.Create(localArqListExEspecificas()).Close();
+
+                foreach (var linha in lista)
+                {
+                    File.AppendAllText(localArqListExEspecificas(), linha + "\r\n"); //Grava em um arquivo externo
+                }
+                
+            }
+
+            if (!File.Exists(localArqListExDiretorio())) //Verifica se o arquivo lista de exclusoes por diretorio existe
+            {
+                string lista = "Test;Tests;Teste;Testes;lib;src-testes;enum;enums;enumeration;ios;build;.scannerwork;.sonar";
+
+                File.Create(localArqListExDiretorio()).Close();
+                File.AppendAllText(localArqListExDiretorio(), lista + "\r\n"); //Grava em um arquivo externo
+            }
+
+            if (!File.Exists(localArqListExExtensao())) //Verifica se o arquivo lista de exclusoes por extensao existe
+            {
+                string lista = "dat;zip;sql;jar;ts;rar;vb;json;SQL";
+
+                File.Create(localArqListExExtensao()).Close();
+                File.AppendAllText(localArqListExExtensao(), lista + "\r\n"); //Grava em um arquivo externo
+            }
+
+        }
+
+        //Metodo para exclusao de arquivos pontuais
+        public static void exclusaoExpecifica()
+        {
+            string[] dirCamSplit = diretorioRaiz().Split('\\'); //Quebra a string do diretorio de execucao do programa
+            string nomeDaPasta = dirCamSplit.Last();            //Obtem o nome da sigla (pasta)
+
+            string[]  linhas = File.ReadAllLines(localArqListExEspecificas()); //Efetua a leitura de todas as linhas do arquivo externo txt
 
             int contadorLinhas = linhas.Count();
 
+            //Verifica se o arquivo esta vazio ou nao
             if (contadorLinhas == 0)
             {
                 return;
@@ -130,61 +158,66 @@ namespace localizaEDestroi
             foreach (string linha in linhas)
             {              
 
-                string[] tmp = linha.Split('\\'); //Variavel temporaria
+                string[] tmp = linha.Split('\\');
 
                 foreach (string ex in tmp)
                 {
-                    if(ex == nomeDaPasta)
-                    {
+                    if(ex == nomeDaPasta) //Verifica se o diretorio atual (pasta) faz parte da exclusao especifica
+                    {                       
 
-                    }
-                    if (ex.Contains("@@@"))//Indice que sera uma arquivo a ser deletado
-                    {
-                        try
+                        if (ex.Contains("@@@")) //No final da string indica que e um arquivo
                         {
-                            File.Delete(linha); //Deleta o arquivo através do caminho absoluto 
-                            Console.WriteLine(linha);
-                            //File.Delete(caminhoAbsolutoExclusaoEspec[1]);
-                            //Console.WriteLine(caminhoAbsolutoExclusaoEspec[1]);
-                        }
-                        catch (FileNotFoundException)
-                        {
+                            string caminho = linha.Replace("@@@", "");
 
-                        }
-                        catch (IOException)
-                        {
+                            try
+                            {
+                                File.Delete(caminho); //Deleta o arquivo através do caminho absoluto                                
+                                Console.WriteLine(caminho);                                
+                            }
+                            catch (FileNotFoundException)
+                            {
 
-                        }
-                        catch (Exception)
-                        {
+                            }
+                            catch (IOException)
+                            {
 
-                        }
+                            }
+                            catch (Exception)
+                            {
 
-                        logtxt.Add(linha.Replace("@@@",""));
+                            }
 
-                    }
-                    else if (ex.Contains("###"))
-                    {
-                        try
-                        {
-                            Directory.Delete(linha, true); //Deleta o diretorio recursivamente através do caminho absoluto    
-                            Console.WriteLine(linha);
-                        }
-                        catch (DirectoryNotFoundException)
-                        {
+                            logtxt.Add(caminho); //Armazena o caminho completo para ser mostrado no arquivo de log
+
+                            break;
 
                         }
-                        catch (IOException)
+                    
+                        else if (ex.Contains("###")) //No final da string indica que e uma pasta
                         {
+                            string caminho = linha.Replace("###", ""); 
+
+                            try
+                            {                                
+                                Directory.Delete(caminho, true); //Deleta o diretorio recursivamente através do caminho absoluto                               
+                                Console.WriteLine(caminho);
+                            }
+                            catch (DirectoryNotFoundException)
+                            {
+
+                            }
+                            catch (IOException)
+                            {
+
+                            }
+                            catch (Exception)
+                            {
+
+                            }
+
+                            logtxt.Add(caminho); //Armazena o caminho completo para ser mostrado no arquivo de log                       
 
                         }
-                        catch (Exception)
-                        {
-
-                        }
-
-                        logtxt.Add(linha.Replace("###", ""));
-
                     }
 
                 }
@@ -193,6 +226,7 @@ namespace localizaEDestroi
             
         }
     
+        //Calculo do tempo total de execucao do programa
         public static string tempoTotalDeExecucao()
         {
             long horas, minutos, segundos, milisegundos;
@@ -225,29 +259,24 @@ namespace localizaEDestroi
             return horas.ToString() + ":" + minutos.ToString() + ":" + segundos.ToString() + ":" + milisegundos.ToString();
         }
 
+        //Obtem o diretorio de execucao do programa
         public static string diretorioRaiz()
         {            
             string diretorio = Environment.CurrentDirectory;
             return diretorio;
         }
         
+        //Metodo para pesquisa por extensao de arquivos
         public static void pesquisaPorExtensao()
         {
-            string extensaoArq = "";
-            //extensaoArq[0]="dat";
-            //extensaoArq[1]= "zip";
-            //extensaoArq[2]= "sql";
-            //extensaoArq[3]= "jar";
-            //extensaoArq[4]= "ts";
-            //extensaoArq[5]= "rar";
-            //extensaoArq[6]= "vb";
-            //extensaoArq[7]= "json";
-            //extensaoArq[8]= "SQL";
 
-            string[] linhas = File.ReadAllLines(@"C:\Users\lucas.rafael\Desktop\ambiente de teste\lista de exclusoes por extensao.txt");
+            string extensaoArq = "";
+
+            string[] linhas = File.ReadAllLines(localArqListExExtensao()); //Efetua a leitura do arquivo externo com os parametros da pesquisa
 
             int contadorLinhas = linhas.Count();
 
+            //Verifica se o arquivo esta vazio
             if (contadorLinhas == 0)
             {
                 return;
@@ -258,9 +287,8 @@ namespace localizaEDestroi
                 extensaoArq += item;
             }
 
-            string[] listaDeArqPorExtensao = extensaoArq.Split(';');
+            string[] listaDeArqPorExtensao = extensaoArq.Split(';'); //Quebra o texto para obter os parametros de pesquisa por extensao
 
-            // ------------- Pesquisa por extensão ------------------ //
             foreach (var item in listaDeArqPorExtensao)
             {
                 //allfiles recebe o caminho absoluto de cada arquivo encontrado a cada iteração do foreach                    
@@ -269,16 +297,18 @@ namespace localizaEDestroi
                 foreach (var file in allfiles)
                 {
                     string[] teste = Convert.ToString(file).Split('\\');
-                    bool verificador = false;
+                    bool verificador = false; //Usado para verificar se o caminho possui algum dos parametros do filtro
 
                     foreach (var ch in teste)
                     {
+                        //Filtro usado para ignorar determinadas pastas na pesquisa
                         if (ch == "target" || ch == ".jazz5" || ch == ".git" || ch == ".metadata")
                         {
                             verificador = true;
                         }
                     }
 
+                    //Entrara na lista apenas se o caminho nao conter nenhum dos parametros do filtro
                     if (!verificador)
                     {
                         listaPorExtensao.Add(Convert.ToString(file)); //listaPorExtensao recebe a variavel com o caminho absoluto
@@ -289,13 +319,8 @@ namespace localizaEDestroi
 
             }
 
-            lock (bloqueador)
-            {
-                if (!ok)
-                {
-                    logtxt.AddRange(listaPorExtensao);
-                }
-            }
+            //Apos o termino da pesquisa, a lista de pesquisa atual e adicionada na lista central para gerar as informacoes no arquivo de log
+            logtxt.AddRange(listaPorExtensao);
 
             foreach (var arqExtTam in listaPorExtensao)
             {
@@ -303,10 +328,11 @@ namespace localizaEDestroi
                 tamArqExt += tamArqExt_verificador;
             }
 
-            qtdArqExt = listaPorExtensao.Count;
-            tamTotArqExt = FormataExibicaoTamanhoArquivo(tamArqExt);
+            qtdArqExt = listaPorExtensao.Count; //Obtem a quantidade de arquivos por extensao encontrados na pesquisa
+            tamTotArqExt = FormataExibicaoTamanhoArquivo(tamArqExt); //Obtem o tamanho total dos arquivos encontrados na pesquisa
         }
 
+        //Responsavel por calcular o tamanho dos diretorios encontrados na pesquisa
         private static long TamanhoTotalDiretorio(DirectoryInfo dInfo, bool includeSubDir)
         {
             //percorre os arquivos da pasta e calcula o tamanho somando o tamanho de cada arquivo
@@ -320,30 +346,13 @@ namespace localizaEDestroi
             return tamanhoTotal;
         }
 
+        //Metodo para pesquisa por diretorio de arquivos
         public static void pesquisaPorDiretorio()
         {            
 
-            string extensaoArq = "";//17
+            string extensaoArq = "";
 
-            //diretorioArq[0] = "Test";
-            //diretorioArq[1] = "Tests";
-            //diretorioArq[2] = "Teste";
-            //diretorioArq[3] = "Testes";
-            //diretorioArq[4] = "lib";
-            //diretorioArq[5] = "src-testes";
-            //diretorioArq[6] = "enum";
-            //diretorioArq[7] = "enums";
-            //diretorioArq[8] = "enumeration";
-            //diretorioArq[9] = "ios";
-            //diretorioArq[10] = "build";
-            //diretorioArq[11] = ".sonar";
-            //diretorioArq[12] = ".scannerwork";
-            //diretorioArq[13] = "ORA-KPVCLIORAC-SRC";
-            //diretorioArq[14] = "ORA-KPVCLITOOL-SRC";
-            //diretorioArq[15] = "VB6-KPVCLIKFIP-SRC";
-            //diretorioArq[16] = "VB6-KPVCLISYSE-SRC";
-
-            string[] linhas = File.ReadAllLines(@"C:\Users\lucas.rafael\Desktop\ambiente de teste\lista de exclusoes por diretorio.txt");
+            string[] linhas = File.ReadAllLines(localArqListExDiretorio());
 
             int contadorLinhas = linhas.Count();
 
@@ -401,13 +410,7 @@ namespace localizaEDestroi
 
             }
 
-            lock (bloqueador)
-            {
-                if (!ok)
-                {
-                    logtxt.AddRange(listaPorNome);
-                }
-            }        
+            logtxt.AddRange(listaPorNome);      
 
             foreach (var arqDirTam in listaPorNome)
             {
@@ -485,10 +488,55 @@ namespace localizaEDestroi
             tamLog = logtxt.Count;
 
             if (tamLog == 0)
-            {                
-                File.AppendAllText(localLog(), "=== Clean ===" + "\r\n"); //Grava em um arquivo externo                
+            {
+                string[] vetorListaDiretorio2 = File.ReadAllLines(localArqListExDiretorio());
+                string[] vetorListaExtensao2 = File.ReadAllLines(localArqListExExtensao());
+
+                string listaDiretorio2 = "";
+                string listaExtensao2 = "";
+
+                foreach (var linha in vetorListaDiretorio2)
+                {
+                    listaDiretorio2 += linha;
+                }
+
+                foreach (var linha in vetorListaExtensao2)
+                {
+                    listaExtensao2 += linha;
+                }
+
+                File.AppendAllText(localLog(), "*********************************************************************************************************" + "\r\n");
+                File.AppendAllText(localLog(), "* Quantidade de diretorios: " + qtdDir + "\r\n");
+                File.AppendAllText(localLog(), "* Tamanho total dos diretorios: " + tamTotArqDir + "\r\n");
+                File.AppendAllText(localLog(), "* Quantidade de arquivos: " + qtdArqExt + "\r\n");
+                File.AppendAllText(localLog(), "* Tamanho total dos arquivos: " + tamTotArqExt + "\r\n");
+                File.AppendAllText(localLog(), "* Tempo decorrido em HMSms: " + tempoTotalDeExecucao() + "\r\n");
+                File.AppendAllText(localLog(), "* ------------------------------------------------------------------------------------------------------- " + "\r\n");
+                File.AppendAllText(localLog(), "* Arquivos incluidos na pesquisa: " + "\r\n");
+                File.AppendAllText(localLog(), "* <<< Por pastas >>>" + "\r\n");
+                File.AppendAllText(localLog(), "* " + listaDiretorio2 + "\r\n");
+                File.AppendAllText(localLog(), "* <<< Por extensao de arquivo >>>" + "\r\n");
+                File.AppendAllText(localLog(), "* " + listaExtensao2 + "\r\n");
+                File.AppendAllText(localLog(), "*********************************************************************************************************" + "\r\n\r\n");
+                File.AppendAllText(localLog(), "=== Clean ===" + "\r\n"); //Grava em um arquivo externo   
 
                 return;                
+            }
+
+            string[] vetorListaDiretorio = File.ReadAllLines(localArqListExDiretorio());
+            string[] vetorListaExtensao = File.ReadAllLines(localArqListExExtensao());
+
+            string listaDiretorio = "";
+            string listaExtensao = "";
+
+            foreach (var linha in vetorListaDiretorio)
+            {
+                listaDiretorio += linha;
+            }
+
+            foreach (var linha in vetorListaExtensao)
+            {
+                listaExtensao += linha;
             }
 
             File.AppendAllText(localLog(), "*********************************************************************************************************" + "\r\n");
@@ -499,16 +547,16 @@ namespace localizaEDestroi
             File.AppendAllText(localLog(), "* Tempo decorrido em HMSms: " + tempoTotalDeExecucao() + "\r\n");
             File.AppendAllText(localLog(), "* ------------------------------------------------------------------------------------------------------- " + "\r\n");
             File.AppendAllText(localLog(), "* Arquivos incluidos na pesquisa: " + "\r\n");
-            File.AppendAllText(localLog(), "* Pastas: Test;Tests;Teste;Testes;lib;src-testes;" + "\r\n");
-            File.AppendAllText(localLog(), "* enum;enums;enumeration;ios;build;.scannerwork;.sonar;" + "\r\n");
-            File.AppendAllText(localLog(), "* ORA-KPVCLIORAC-SRC;ORA-KPVCLITOOL-SRC;VB6-KPVCLIKFIP-SRC;VB6-KPVCLISYSE-SRC" + "\r\n");
-            File.AppendAllText(localLog(), "* Extensao: dat;zip;sql;jar;ts;rar;vb;json" + "\r\n");
+            File.AppendAllText(localLog(), "* <<< Por pastas >>>" + "\r\n");
+            File.AppendAllText(localLog(), "* " + listaDiretorio + "\r\n");
+            File.AppendAllText(localLog(), "* <<< Por extensao de arquivo >>>" + "\r\n");
+            File.AppendAllText(localLog(), "* " + listaExtensao + "\r\n");
             File.AppendAllText(localLog(), "*********************************************************************************************************" + "\r\n\r\n");
 
             foreach (var dir in logtxt)
             {                
                 File.AppendAllText(localLog(), dir + "\r\n"); //Grava em um arquivo externo
-            }                
+            }
 
             tamLog = 0;
             
@@ -516,62 +564,63 @@ namespace localizaEDestroi
 
         public static void geratxt()
         {
-            if (!File.Exists(diretorioRaiz())) //Se o arquivo de log não existir no diretorio informado, então ele é criado
+            if (!File.Exists(diretorioRaiz())) //Se o diretorio de log não existir, então ele é criado
             {
                 Directory.CreateDirectory(DirLog());
             }
 
-            if (!File.Exists(DirLog())) //Se o arquivo de log não existir no diretorio informado, então ele é criado
-            {
-                File.Create(localLog()).Close();
-            }
-
-            FileIOPermission f2 = new FileIOPermission(FileIOPermissionAccess.Write, diretorioRaiz());
-
-            try
-            {
-                File.Create(localLog()).Close();
-            }
-            catch (SecurityException s)
-            {
-                Console.WriteLine("Restricao: "+s.Message);
-            }
+            File.Create(localLog()).Close();
 
         }
 
         //Diretorio do arquivo de log completo mais o nome do arquivo
         public static string localLog()
         {
-            string localDoLog;
             string nomeArq = "_log_arquivos_deletados.txt";
-            DateTime data = DateTime.Now;            
-            localDoLog = DirLog() + "\\" + Convert.ToString(data.ToString("ddMMyy")+ data.Hour.ToString() + nomeArq);
+            DateTime data = DateTime.Now;
+            string localDoLog = DirLog() + "\\" + Convert.ToString(data.ToString("ddMMyy")+ data.Hour.ToString() + nomeArq);
             return localDoLog;
         }
 
-        //Diretorio do LOG completo mais o nome da pasta
+        //Caminho do diretorio do LOG completo mais o nome da pasta
         public static string DirLog()
         {
-            string DirLog;
             string nomePastaLog = "LogDeletados";
-            DirLog = diretorioRaiz() + "\\" + nomePastaLog;
+            string DirLog = diretorioRaiz() + "\\" + nomePastaLog;
             return DirLog;
         }
 
-        private void limpaVariaveis()
+        //Diretorio do arquivo de lista de exclusoes especificas completo mais o nome do arquivo
+        public static string localArqListExEspecificas()
         {
-            logtxt.Clear();
+            string nomeArq = "lista de exclusoes especificas.txt";
+            string localArq = dirParametrosDePesquisa() + "\\" + nomeArq;
+            return localArq;
+        }
 
-            tamTotArqDir = null;
-            tempAllfiles2.Clear();
-            listaPorExtensao.Clear(); //Limpa os elementos da list para uma nova pesquisa
-            listaPorNome.Clear(); //Limpa os elementos da list para uma nova pesquisa
+        //Diretorio do arquivo de lista de exclusoes por diretorio completo mais o nome do arquivo
+        public static string localArqListExDiretorio()
+        {
+            string nomeArq = "lista de exclusoes por diretorio.txt";
+            string localArq = dirParametrosDePesquisa() + "\\" + nomeArq;
+            return localArq;
+        }
 
-            allfiles = null; //Limpa os elementos do vetor para uma nova pesquisa
-            allfiles2 = null; //Limpa os elementos do vetor para uma nova pesquisa
-
-            qtdArqExt = 0;
+        //Diretorio do arquivo de lista de exclusoes por extensao completo mais o nome do arquivo
+        public static string localArqListExExtensao()
+        {
+            string nomeArq = "lista de exclusoes por extensao.txt";
+            string localArq = dirParametrosDePesquisa() + "\\" + nomeArq;
+            return localArq;
         }       
+
+        //Caminho do diretorio do parametro de pesquisa completo mais o nome da pasta
+        public static string dirParametrosDePesquisa()
+        {
+            string pastaArqDeConf = "Parametros pesquisa localizaEDestroi";
+            string DirLog = diretorioRaiz() + "\\" + pastaArqDeConf;
+            return DirLog;
+        }    
 
         private static void deletarPorDiretorio()
         {

@@ -1,0 +1,17 @@
+*********************************************************************************************************
+* Quantidade de diretorios: 0
+* Tamanho total dos diretorios: 0 bytes
+* Quantidade de arquivos: 0
+* Tamanho total dos arquivos: 0 bytes
+* Tempo decorrido em HMSms: 0:6:6:75
+* ------------------------------------------------------------------------------------------------------- 
+* Arquivos incluidos na pesquisa: 
+* <<< Por pastas >>>
+* Test
+* <<< Por extensao de arquivo >>>
+* dat;sql
+*********************************************************************************************************
+
+
+***** Exclusao especifica *****
+
