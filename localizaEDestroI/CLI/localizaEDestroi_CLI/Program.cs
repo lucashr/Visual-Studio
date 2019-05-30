@@ -151,61 +151,71 @@ namespace localizaEDestroi
                         string[] tmp2 = linha.Split('\\'); //Usado para verificar o arquivo da pasta especifica
 
                         foreach (string verificaArquivo in tmp2)
-                        {
+                        {                           
 
                             if (verificaArquivo.Contains("@@@")) //No final da string indica que e um arquivo
                             {
                                 string caminho = linha.Replace("@@@", "");
 
+                                bool arqPresente = true; //Usada para verificar se o arquivo estava no diretorio ou nao
+
                                 try
                                 {
-                                    File.Delete(caminho); //Deleta o arquivo através do caminho absoluto                                
-                                    Console.WriteLine(caminho);
+                                    File.OpenRead(caminho); //Usado para tentar efetuar a leitura de um arquivo, com o objetivo de gerar uma exception caso ele nao esteja presente
+                                    File.Delete(caminho);   //Deleta o arquivo através do caminho absoluto                                    
                                 }
-                                catch (FileNotFoundException)
+                                    catch (FileNotFoundException)
                                 {
-
+                                    arqPresente = false;
                                 }
                                 catch (IOException)
                                 {
-
+                                    arqPresente = false;
                                 }
                                 catch (Exception)
                                 {
-
+                                    arqPresente = false;
                                 }
 
-                                logtxt.Add(caminho); //Armazena o caminho completo para ser mostrado no arquivo de log
+                                if (arqPresente) //Verifica se o arquivo esta presente ou nao no direotorio
+                                    {
+                                        Console.WriteLine(caminho);
+                                        logtxt.Add(caminho); //Armazena o caminho completo para ser mostrado no arquivo de log
+                                    }                                
 
-                            }
+                                }
 
                             else if (verificaArquivo.Contains("###")) //No final da string indica que e uma pasta
                             {
                                 string caminho = linha.Replace("###", "");
 
+                                bool arqPresente = true; //Usada para verificar se o arquivo estava no diretorio ou nao
+
                                 try
                                 {
-                                    Directory.Delete(caminho, true); //Deleta o diretorio recursivamente através do caminho absoluto                               
-                                    Console.WriteLine(caminho);
+                                    Directory.Delete(caminho, true); //Deleta o diretorio recursivamente através do caminho absoluto                                    
                                 }
                                 catch (DirectoryNotFoundException)
                                 {
-
+                                    arqPresente = false;
                                 }
                                 catch (IOException)
                                 {
-
+                                    arqPresente = false;
                                 }
                                 catch (Exception)
                                 {
-
+                                    arqPresente = false;
                                 }
 
-                                logtxt.Add(caminho); //Armazena o caminho completo para ser mostrado no arquivo de log                       
+                                if (arqPresente) //Verifica se o arquivo esta presente ou nao no direotorio
+                                {
+                                    Console.WriteLine(caminho);
+                                    logtxt.Add(caminho); //Armazena o caminho completo para ser mostrado no arquivo de log
+                                }                                                       
 
                             }
                         }
-
 
                     }
 

@@ -1,0 +1,6 @@
+C:\Users\lucas.rafael\Desktop\Programas LCSilva\localizaEDestroI\CLI\localizaEDestroi_CLI\bin\Debug\Application.java@@@
+C:\Users\lucas.rafael\Desktop\Programas LCSilva\localizaEDestroI\CLI\localizaEDestroi_CLI\bin\Debug\AppController.java@@@
+C:\Users\lucas.rafael\Desktop\Programas LCSilva\localizaEDestroI\CLI\localizaEDestroi_CLI\bin\Debug\ORA-KPVCLIORAC-SRC###
+C:\Users\lucas.rafael\Desktop\Programas LCSilva\localizaEDestroI\CLI\localizaEDestroi_CLI\bin\Debug\ORA-KPVCLITOOL-SRC###
+C:\Users\lucas.rafael\Desktop\Programas LCSilva\localizaEDestroI\CLI\localizaEDestroi_CLI\bin\Debug\VB6-KPVCLIKFIP-SRC###
+C:\Users\lucas.rafael\Desktop\Programas LCSilva\localizaEDestroI\CLI\localizaEDestroi_CLI\bin\Debug\VB6-KPVCLISYSE-SRC###
