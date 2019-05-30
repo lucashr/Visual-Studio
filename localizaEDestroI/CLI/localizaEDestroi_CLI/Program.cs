@@ -125,9 +125,10 @@ namespace localizaEDestroi
         public static void exclusaoExpecifica()
         {
             string[] dirCamSplit = diretorioRaiz().Split('\\'); //Quebra a string do diretorio de execucao do programa
+            string[] linhas = File.ReadAllLines(localArqListExEspecificas()); //Efetua a leitura de todas as linhas do arquivo externo txt
             string nomeDaPasta = dirCamSplit.Last();            //Obtem o nome da sigla (pasta)
 
-            string[] linhas = File.ReadAllLines(localArqListExEspecificas()); //Efetua a leitura de todas as linhas do arquivo externo txt
+            bool flag_titulo = false; //Flag responsavel por informar se o titulo foi imprimido no log ou nao
 
             int contadorLinhas = linhas.Count();
 
@@ -135,19 +136,22 @@ namespace localizaEDestroi
             if (contadorLinhas == 0)
             {
                 return;
-            }
-
-            logtxt.Add("\r\n" + "***** Exclusao especifica *****" + "\r\n");
+            }            
 
             foreach (string linha in linhas)
-            {
-                //Debug\Application.java@@@
+            {                
                 string[] tmp = linha.Split('\\');
 
                 foreach (string ex in tmp)
                 {
                     if (ex == nomeDaPasta) //Verifica se o diretorio atual (pasta) faz parte da exclusao especifica
                     {
+                        if(!flag_titulo)
+                        {
+                            logtxt.Add("\r\n" + "***** Exclusao especifica *****" + "\r\n");
+                            flag_titulo = true;
+                        }                       
+
                         string[] tmp2 = linha.Split('\\'); //Usado para verificar o arquivo da pasta especifica
 
                         foreach (string verificaArquivo in tmp2)
