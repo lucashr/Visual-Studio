@@ -9,7 +9,7 @@ namespace localizaEDestroi
 {
 
     class Program
-    {        
+    {
 
         private static List<string> listaPorNome = new List<string>();     //List contendo o resultado da pesquisa por nome
         private static List<string> listaPorExtensao = new List<string>(); //List contendo o resultado da pesquisa por extensão
@@ -17,7 +17,7 @@ namespace localizaEDestroi
 
         private static long tamArqDir_somador, qtdDir, tamArqExt, qtdArqExt, tamArqExt_verificador, tempoDeExecucao;
 
-        private static string tamTotArqExt, tamTotArqDir;              
+        private static string tamTotArqExt, tamTotArqDir;
 
         static void Main(string[] args)
         {
@@ -100,7 +100,7 @@ namespace localizaEDestroi
                 {
                     File.AppendAllText(localArqListExEspecificas(), linha + "\r\n"); //Grava em um arquivo externo
                 }
-                
+
             }
 
             if (!File.Exists(localArqListExDiretorio())) //Verifica se o arquivo lista de exclusoes por diretorio existe
@@ -127,7 +127,7 @@ namespace localizaEDestroi
             string[] dirCamSplit = diretorioRaiz().Split('\\'); //Quebra a string do diretorio de execucao do programa
             string nomeDaPasta = dirCamSplit.Last();            //Obtem o nome da sigla (pasta)
 
-            string[]  linhas = File.ReadAllLines(localArqListExEspecificas()); //Efetua a leitura de todas as linhas do arquivo externo txt
+            string[] linhas = File.ReadAllLines(localArqListExEspecificas()); //Efetua a leitura de todas as linhas do arquivo externo txt
 
             int contadorLinhas = linhas.Count();
 
@@ -140,108 +140,113 @@ namespace localizaEDestroi
             logtxt.Add("\r\n" + "***** Exclusao especifica *****" + "\r\n");
 
             foreach (string linha in linhas)
-            {              
-
+            {
+                //Debug\Application.java@@@
                 string[] tmp = linha.Split('\\');
 
                 foreach (string ex in tmp)
                 {
-                    if(ex == nomeDaPasta) //Verifica se o diretorio atual (pasta) faz parte da exclusao especifica
-                    {                       
+                    if (ex == nomeDaPasta) //Verifica se o diretorio atual (pasta) faz parte da exclusao especifica
+                    {
+                        string[] tmp2 = linha.Split('\\'); //Usado para verificar o arquivo da pasta especifica
 
-                        if (ex.Contains("@@@")) //No final da string indica que e um arquivo
+                        foreach (string verificaArquivo in tmp2)
                         {
-                            string caminho = linha.Replace("@@@", "");
 
-                            try
+                            if (verificaArquivo.Contains("@@@")) //No final da string indica que e um arquivo
                             {
-                                File.Delete(caminho); //Deleta o arquivo através do caminho absoluto                                
-                                Console.WriteLine(caminho);                                
+                                string caminho = linha.Replace("@@@", "");
+
+                                try
+                                {
+                                    File.Delete(caminho); //Deleta o arquivo através do caminho absoluto                                
+                                    Console.WriteLine(caminho);
+                                }
+                                catch (FileNotFoundException)
+                                {
+
+                                }
+                                catch (IOException)
+                                {
+
+                                }
+                                catch (Exception)
+                                {
+
+                                }
+
+                                logtxt.Add(caminho); //Armazena o caminho completo para ser mostrado no arquivo de log
+
                             }
-                            catch (FileNotFoundException)
+
+                            else if (verificaArquivo.Contains("###")) //No final da string indica que e uma pasta
                             {
+                                string caminho = linha.Replace("###", "");
+
+                                try
+                                {
+                                    Directory.Delete(caminho, true); //Deleta o diretorio recursivamente através do caminho absoluto                               
+                                    Console.WriteLine(caminho);
+                                }
+                                catch (DirectoryNotFoundException)
+                                {
+
+                                }
+                                catch (IOException)
+                                {
+
+                                }
+                                catch (Exception)
+                                {
+
+                                }
+
+                                logtxt.Add(caminho); //Armazena o caminho completo para ser mostrado no arquivo de log                       
 
                             }
-                            catch (IOException)
-                            {
-
-                            }
-                            catch (Exception)
-                            {
-
-                            }
-
-                            logtxt.Add(caminho); //Armazena o caminho completo para ser mostrado no arquivo de log
-
-                            break;
-
                         }
-                    
-                        else if (ex.Contains("###")) //No final da string indica que e uma pasta
-                        {
-                            string caminho = linha.Replace("###", ""); 
 
-                            try
-                            {                                
-                                Directory.Delete(caminho, true); //Deleta o diretorio recursivamente através do caminho absoluto                               
-                                Console.WriteLine(caminho);
-                            }
-                            catch (DirectoryNotFoundException)
-                            {
 
-                            }
-                            catch (IOException)
-                            {
-
-                            }
-                            catch (Exception)
-                            {
-
-                            }
-
-                            logtxt.Add(caminho); //Armazena o caminho completo para ser mostrado no arquivo de log                       
-
-                        }
                     }
 
                 }
 
-              }
-            
+            }
+
         }
-    
+
         //Calculo do tempo total de execucao do programa
         public static string tempoTotalDeExecucao()
         {
-            long horas, minutos, segundos, milisegundos;
-            
-            long auxm, auxs;
-            segundos = tempoDeExecucao / 1000;
-            milisegundos = (tempoDeExecucao % 1000);
+            long horas, minutos, segundos;
+  
+            segundos = (tempoDeExecucao / 1000) % 60;      // se não precisar de segundos, basta remover esta linha.
+            minutos = (tempoDeExecucao / 60000) % 60;     // 60000   = 60 * 1000
+            horas = tempoDeExecucao / 3600000;            // 3600000 = 60 * 60 * 1000
 
-            if (segundos >= 60)
-            {
-                segundos = segundos / 60;
-            }
+            //if (segundos >= 60)
+            //{
+            //    segundos = segundos / 60;
+            //}
 
-            auxs = segundos * 60;
-            minutos = auxs / 60;
+            //auxs = segundos * 60;
+            //minutos = auxs / 60;
 
-            if (minutos > 60)
-            {
-                minutos = minutos / 60;
-            }
+            //if (minutos > 60)
+            //{
+            //    minutos = minutos / 60;
+            //}
 
-            auxm = minutos * 60;
-            horas = minutos / 60;
+            //auxm = minutos * 60;
+            //horas = minutos / 60;
 
-            if (horas > 60)
-            {
-                horas = horas / 60;
-            }
+            //if (horas > 60)
+            //{
+            //    horas = horas / 60;
+            //}
 
-            return horas.ToString() + ":" + minutos.ToString() + ":" + segundos.ToString() + ":" + milisegundos.ToString();
-        }              
+            return horas.ToString() + ":" + minutos.ToString() + ":" + segundos.ToString();
+        }
 
         // O formato padrão é "0.### XB", Ex: "4.2 KB" ou "1.434 GB"
         public static string FormataExibicaoTamanhoArquivo(long i)
@@ -298,7 +303,7 @@ namespace localizaEDestroi
             leitura = (leitura / 1024);
             // retorna o número formatado com sufixo
             return leitura.ToString("0.### ") + sufixo;
-        }        
+        }
 
         //Metodo responsavel por gravar as informacoes no arquivo txt
         public static void geraLog()
@@ -338,7 +343,7 @@ namespace localizaEDestroi
                 File.AppendAllText(localLog(), "*********************************************************************************************************" + "\r\n\r\n");
                 File.AppendAllText(localLog(), "=== Clean ===" + "\r\n"); //Grava em um arquivo externo   
 
-                return;                
+                return;
             }
 
             string[] vetorListaDiretorio = File.ReadAllLines(localArqListExDiretorio());
@@ -362,7 +367,7 @@ namespace localizaEDestroi
             File.AppendAllText(localLog(), "* Tamanho total dos diretorios: " + tamTotArqDir + "\r\n");
             File.AppendAllText(localLog(), "* Quantidade de arquivos: " + qtdArqExt + "\r\n");
             File.AppendAllText(localLog(), "* Tamanho total dos arquivos: " + tamTotArqExt + "\r\n");
-            File.AppendAllText(localLog(), "* Tempo decorrido em HMSms: " + tempoTotalDeExecucao() + "\r\n");
+            File.AppendAllText(localLog(), "* Tempo decorrido em HMS: " + tempoTotalDeExecucao() + "\r\n");
             File.AppendAllText(localLog(), "* ------------------------------------------------------------------------------------------------------- " + "\r\n");
             File.AppendAllText(localLog(), "* Arquivos incluidos na pesquisa: " + "\r\n");
             File.AppendAllText(localLog(), "* <<< Por pastas >>>" + "\r\n");
@@ -372,12 +377,12 @@ namespace localizaEDestroi
             File.AppendAllText(localLog(), "*********************************************************************************************************" + "\r\n\r\n");
 
             foreach (var dir in logtxt)
-            {                
+            {
                 File.AppendAllText(localLog(), dir + "\r\n"); //Grava em um arquivo externo
             }
 
             tamLog = 0;
-            
+
         }
 
         //Obtem o diretorio de execucao do programa
@@ -392,7 +397,7 @@ namespace localizaEDestroi
         {
             string nomeArq = "_log_arquivos_deletados.txt";
             DateTime data = DateTime.Now;
-            string localDoLog = DirLog() + "\\" + Convert.ToString(data.ToString("ddMMyy")+ data.Hour.ToString() + nomeArq);
+            string localDoLog = DirLog() + "\\" + Convert.ToString(data.ToString("ddMMyy") + data.Hour.ToString() + nomeArq);
             return localDoLog;
         }
 
@@ -426,7 +431,7 @@ namespace localizaEDestroi
             string nomeArq = "lista de exclusoes por extensao.txt";
             string localArq = dirParametrosDePesquisa() + "\\" + nomeArq;
             return localArq;
-        }       
+        }
 
         //Caminho do diretorio do parametro de pesquisa completo mais o nome da pasta
         public static string dirParametrosDePesquisa()
@@ -441,7 +446,7 @@ namespace localizaEDestroi
         {
             string[] allfiles;  //Lista de diretorios pela pesquisa por extensão
             string[] linhas = File.ReadAllLines(localArqListExExtensao()); //Efetua a leitura do arquivo externo com os parametros da pesquisa
-            
+
             string extensaoArq = "";
 
             int contadorLinhas = linhas.Count();
@@ -564,7 +569,7 @@ namespace localizaEDestroi
             }
 
             foreach (var file2 in tempAllfiles2)
-            {                
+            {
                 string[] teste = Convert.ToString(file2).Split('\\');
                 bool verificador = false;
 
