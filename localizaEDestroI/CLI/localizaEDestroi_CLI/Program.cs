@@ -224,27 +224,6 @@ namespace localizaEDestroi
             minutos = (tempoDeExecucao / 60000) % 60;     // 60000   = 60 * 1000
             horas = tempoDeExecucao / 3600000;            // 3600000 = 60 * 60 * 1000
 
-            //if (segundos >= 60)
-            //{
-            //    segundos = segundos / 60;
-            //}
-
-            //auxs = segundos * 60;
-            //minutos = auxs / 60;
-
-            //if (minutos > 60)
-            //{
-            //    minutos = minutos / 60;
-            //}
-
-            //auxm = minutos * 60;
-            //horas = minutos / 60;
-
-            //if (horas > 60)
-            //{
-            //    horas = horas / 60;
-            //}
-
             return horas.ToString() + ":" + minutos.ToString() + ":" + segundos.ToString();
         }
 
