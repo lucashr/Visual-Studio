@@ -104,3 +104,17 @@ C:\Users\lucas.rafael\Desktop\Programas LCSilva\localizaEDestroI\GUI\localizaEDe
 C:\Users\lucas.rafael\Desktop\Programas LCSilva\localizaEDestroI\GUI\localizaEDestroi\obj\Debug\localizaEDestroi.application
 C:\Users\lucas.rafael\Desktop\Programas LCSilva\localizaEDestroI\GUI\localizaEDestroi\obj\Debug\localizaEDestroi.exe
 C:\Users\lucas.rafael\Desktop\Programas LCSilva\localizaEDestroI\GUI\localizaEDestroi\obj\Debug\localizaEDestroi.pdb
+C:\Users\lucas.rafael\Desktop\repositorios git\Visual-Studio\localizaEDestroI\GUI\localizaEDestroi\bin\Debug\localizaEDestroi.exe.config
+C:\Users\lucas.rafael\Desktop\repositorios git\Visual-Studio\localizaEDestroI\GUI\localizaEDestroi\bin\Debug\localizaEDestroi.exe.manifest
+C:\Users\lucas.rafael\Desktop\repositorios git\Visual-Studio\localizaEDestroI\GUI\localizaEDestroi\bin\Debug\localizaEDestroi.application
+C:\Users\lucas.rafael\Desktop\repositorios git\Visual-Studio\localizaEDestroI\GUI\localizaEDestroi\bin\Debug\localizaEDestroi.exe
+C:\Users\lucas.rafael\Desktop\repositorios git\Visual-Studio\localizaEDestroI\GUI\localizaEDestroi\bin\Debug\localizaEDestroi.pdb
+C:\Users\lucas.rafael\Desktop\repositorios git\Visual-Studio\localizaEDestroI\GUI\localizaEDestroi\obj\Debug\localizaEDestroi.csprojAssemblyReference.cache
+C:\Users\lucas.rafael\Desktop\repositorios git\Visual-Studio\localizaEDestroI\GUI\localizaEDestroi\obj\Debug\localizaEDestroi.Form1.resources
+C:\Users\lucas.rafael\Desktop\repositorios git\Visual-Studio\localizaEDestroI\GUI\localizaEDestroi\obj\Debug\localizaEDestroi.Properties.Resources.resources
+C:\Users\lucas.rafael\Desktop\repositorios git\Visual-Studio\localizaEDestroI\GUI\localizaEDestroi\obj\Debug\localizaEDestroi.csproj.GenerateResource.cache
+C:\Users\lucas.rafael\Desktop\repositorios git\Visual-Studio\localizaEDestroI\GUI\localizaEDestroi\obj\Debug\localizaEDestroi.csproj.CoreCompileInputs.cache
+C:\Users\lucas.rafael\Desktop\repositorios git\Visual-Studio\localizaEDestroI\GUI\localizaEDestroi\obj\Debug\localizaEDestroi.exe.manifest
+C:\Users\lucas.rafael\Desktop\repositorios git\Visual-Studio\localizaEDestroI\GUI\localizaEDestroi\obj\Debug\localizaEDestroi.application
+C:\Users\lucas.rafael\Desktop\repositorios git\Visual-Studio\localizaEDestroI\GUI\localizaEDestroi\obj\Debug\localizaEDestroi.exe
+C:\Users\lucas.rafael\Desktop\repositorios git\Visual-Studio\localizaEDestroI\GUI\localizaEDestroi\obj\Debug\localizaEDestroi.pdb

@@ -7,14 +7,14 @@
     <framework targetVersion="4.6.1" profile="Full" supportedRuntime="4.0.30319" />
   </compatibleFrameworks>
   <dependency>
-    <dependentAssembly dependencyType="install" codebase="localizaEDestroi.exe.manifest" size="4035">
+    <dependentAssembly dependencyType="install" codebase="localizaEDestroi.exe.manifest" size="4040">
       <assemblyIdentity name="localizaEDestroi.exe" version="1.0.0.13" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>s4kLnA5SAsoHm0Xs46Cy421WFfSCGPuT37dYPtTY/SY=</dsig:DigestValue>
+        <dsig:DigestValue>/q2tANTOa1WeZthCOUHZ656DjOX7PORWeE7UGsdKYkI=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

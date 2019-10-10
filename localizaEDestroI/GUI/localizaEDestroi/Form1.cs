@@ -141,7 +141,7 @@ namespace localizaEDestroi
             if (!sendingWorker.CancellationPending)//At each iteration of the loop, 
                                                    //check if there is a cancellation request pending 
             {
-                pesquisaPorNomeDir();
+                pesquisaPorDir();
                                 
                 //flg_gravaDgv = true;
                 //sb.Append(string.Format("Counting number: {0}{1}",
@@ -449,61 +449,6 @@ namespace localizaEDestroi
             lblTamTotArq.Text = FormataExibicaoTamanhoArquivo(tamArqExt);                   
         }
 
-        private void pesquisaPorNomeDir()
-        {
-            string txtExt = txtExtArq.Text;   //Recebe o conjunto de extensões do textbox delimitados por (.)            
-            string[] ext = txtExt.Split('.'); //Quebra a string nas delimitações (.) e armazena em um vetor
-
-            //var listaClonada = new List<Vao> { new Vao { Quantidade = 2, Medida = 2 }, new Vao { Quantidade = 0, Medida = 0 }, new Vao { Quantidade = 1, Medida = 1 } };
-            long tamTotArqExt;
-
-            if (txtExtArq.Text == "")
-            {
-                return;
-            }
-
-
-            // ------------- Pesquisa por extensão ------------------ //
-            foreach (var item in ext)
-            {
-                //allfiles recebe o caminho absoluto de cada arquivo encontrado a cada iteração do foreach                    
-                allfiles = Directory.GetFiles(dirRaiz, "*.*", SearchOption.AllDirectories).Where(s => s.EndsWith("." + item.ToString(), StringComparison.CurrentCulture)).ToArray();
-
-                foreach (var file in allfiles)
-                {
-                    string[] teste = Convert.ToString(file).Split('\\');
-                    bool verificador = false;
-
-                    foreach (var ch in teste)
-                    {
-                        if (ch == "target" || ch == ".jazz5" || ch == ".git" || ch == ".metadata")
-                        {
-                            verificador = true;
-                        }
-                    }
-
-                    if (!verificador)
-                    {
-                        listaPorExtensao.Add(Convert.ToString(file)); //listaPorExtensao recebe a variavel com o caminho absoluto
-                    }
-
-                }
-
-            }
-
-            logtxt.AddRange(listaPorExtensao);
-
-            foreach (var arqExtTam in listaPorExtensao)
-            {
-                tamTotArqExt = new FileInfo(arqExtTam.ToString()).Length;
-                tamArqExt += tamTotArqExt;
-            }
-
-            totArquivosPorExt = listaPorExtensao.Count;
-            lblTotArq.Text = totArquivosPorExt.ToString();
-            lblTamTotArq.Text = FormataExibicaoTamanhoArquivo(tamArqExt);
-        }
-
         // O formato padrão é "0.### XB", Ex: "4.2 KB" ou "1.434 GB"
         public string FormataExibicaoTamanhoArquivo(long i)
         {
@@ -610,7 +555,7 @@ namespace localizaEDestroi
             btnDeletar.Enabled = false;//Disable the Start button
         }
 
-        private void pesquisaPorNomeArq()
+        private void pesquisaPorDir()
         {
             string txtNom = txtNomePasta.Text;  //Recebe o conjunto de nomes do textbox delimitados por (.)
             string[] nom = txtNom.Split('.'); //Quebra a string nas delimitações (.) e armazena em um vetor

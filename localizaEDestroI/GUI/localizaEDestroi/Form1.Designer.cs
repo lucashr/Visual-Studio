@@ -50,8 +50,6 @@
             this.lblTotArq = new System.Windows.Forms.Label();
             this.lblStatus = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.txtNomeArq = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             this.SuspendLayout();
             // 
@@ -120,6 +118,7 @@
             this.dgv.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dgv.Name = "dgv";
             this.dgv.ReadOnly = true;
+            this.dgv.RowHeadersWidth = 62;
             this.dgv.Size = new System.Drawing.Size(1126, 275);
             this.dgv.TabIndex = 7;
             // 
@@ -127,6 +126,7 @@
             // 
             this.caminhoabs.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.caminhoabs.HeaderText = "Caminho absoluto";
+            this.caminhoabs.MinimumWidth = 8;
             this.caminhoabs.Name = "caminhoabs";
             this.caminhoabs.ReadOnly = true;
             // 
@@ -266,31 +266,11 @@
             this.label8.TabIndex = 21;
             this.label8.Text = "Status:";
             // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(34, 256);
-            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(190, 20);
-            this.label9.TabIndex = 23;
-            this.label9.Text = "Delete arquivos por nome";
-            // 
-            // txtNomeArq
-            // 
-            this.txtNomeArq.Location = new System.Drawing.Point(39, 281);
-            this.txtNomeArq.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txtNomeArq.Name = "txtNomeArq";
-            this.txtNomeArq.Size = new System.Drawing.Size(416, 26);
-            this.txtNomeArq.TabIndex = 22;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1200, 692);
-            this.Controls.Add(this.label9);
-            this.Controls.Add(this.txtNomeArq);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.lblStatus);
             this.Controls.Add(this.lblTotArq);
@@ -344,7 +324,5 @@
         private System.Windows.Forms.Label lblStatus;
         private System.Windows.Forms.DataGridViewTextBoxColumn caminhoabs;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox txtNomeArq;
     }
 }
