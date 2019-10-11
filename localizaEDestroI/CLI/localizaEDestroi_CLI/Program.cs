@@ -85,38 +85,17 @@ namespace localizaEDestroi
 
             if (!File.Exists(localArqListExEspecificas())) //Verifica se o arquivo lista de exclusoes especificas existe
             {
-                List<string> lista = new List<string>();
-
-                lista.Add(@"C:\InspecaoSonar\Dev\GIT\RICARDO-PUIG\PAY\java-paysrv\pay-services\src\main\java\br\com\santander\pay\Application.java@@@");
-                lista.Add(@"C:\InspecaoSonar\Dev\GIT\RICARDO-PUIG\PAY\java-payappand\app\src\main\java\br\com\santander\ewallet\service\AppController.java@@@");
-                lista.Add(@"C:\InspecaoSonar\Dev\RTC\KPV\ORA-KPVCLIORAC-SRC###");
-                lista.Add(@"C:\InspecaoSonar\Dev\RTC\KPV\ORA-KPVCLITOOL-SRC###");
-                lista.Add(@"C:\InspecaoSonar\Dev\RTC\KPV\VB6-KPVCLIKFIP-SRC###");
-                lista.Add(@"C:\InspecaoSonar\Dev\RTC\KPV\VB6-KPVCLISYSE-SRC###");
-
                 File.Create(localArqListExEspecificas()).Close();
-
-                foreach (var linha in lista)
-                {
-                    File.AppendAllText(localArqListExEspecificas(), linha + "\r\n"); //Grava em um arquivo externo
-                }
-
             }
 
             if (!File.Exists(localArqListExDiretorio())) //Verifica se o arquivo lista de exclusoes por diretorio existe
             {
-                string lista = "Test;Tests;Teste;Testes;lib;src-testes;enum;enums;enumeration;ios;build;.scannerwork;.sonar";
-
                 File.Create(localArqListExDiretorio()).Close();
-                File.AppendAllText(localArqListExDiretorio(), lista + "\r\n"); //Grava em um arquivo externo
             }
 
             if (!File.Exists(localArqListExExtensao())) //Verifica se o arquivo lista de exclusoes por extensao existe
             {
-                string lista = "dat;zip;sql;jar;ts;rar;vb;json;SQL";
-
                 File.Create(localArqListExExtensao()).Close();
-                File.AppendAllText(localArqListExExtensao(), lista + "\r\n"); //Grava em um arquivo externo
             }
 
         }
@@ -470,7 +449,7 @@ namespace localizaEDestroi
                     foreach (var ch in teste)
                     {
                         //Filtro usado para ignorar determinadas pastas na pesquisa
-                        if (ch == "target" || ch == ".jazz5" || ch == ".git" || ch == ".metadata")
+                        if (ch == "target" || ch == ".jazz5" || ch == ".git" || ch == ".metadata" || ch == "Parametros pesquisa localizaEDestroi" || ch == "LogDeletados")
                         {
                             verificador = true;
                         }
@@ -568,7 +547,7 @@ namespace localizaEDestroi
 
                 foreach (var ch in teste)
                 {
-                    if (ch == "target" || ch == ".jazz5" || ch == ".git" || ch == ".metadata")
+                    if (ch == "target" || ch == ".jazz5" || ch == ".git" || ch == ".metadata" || ch == "Parametros pesquisa localizaEDestroi" || ch == "LogDeletados")
                     {
                         verificador = true;
                     }

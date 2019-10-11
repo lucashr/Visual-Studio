@@ -75,3 +75,14 @@ C:\Users\lucas.rafael\Desktop\Programas LCSilva\localizaEDestroI\CLI\localizaEDe
 C:\Users\lucas.rafael\Desktop\Programas LCSilva\localizaEDestroI\CLI\localizaEDestroi_CLI\obj\Debug\localizaEDestroi_CLI.application
 C:\Users\lucas.rafael\Desktop\Programas LCSilva\localizaEDestroI\CLI\localizaEDestroi_CLI\obj\Debug\localizaEDestroi_CLI.exe
 C:\Users\lucas.rafael\Desktop\Programas LCSilva\localizaEDestroI\CLI\localizaEDestroi_CLI\obj\Debug\localizaEDestroi_CLI.pdb
+C:\Users\lucas.rafael\Desktop\repositorios git\Visual-Studio\localizaEDestroI\CLI\localizaEDestroi_CLI\bin\Debug\localizaEDestroi_CLI.exe.config
+C:\Users\lucas.rafael\Desktop\repositorios git\Visual-Studio\localizaEDestroI\CLI\localizaEDestroi_CLI\bin\Debug\localizaEDestroi_CLI.exe.manifest
+C:\Users\lucas.rafael\Desktop\repositorios git\Visual-Studio\localizaEDestroI\CLI\localizaEDestroi_CLI\bin\Debug\localizaEDestroi_CLI.application
+C:\Users\lucas.rafael\Desktop\repositorios git\Visual-Studio\localizaEDestroI\CLI\localizaEDestroi_CLI\bin\Debug\localizaEDestroi_CLI.exe
+C:\Users\lucas.rafael\Desktop\repositorios git\Visual-Studio\localizaEDestroI\CLI\localizaEDestroi_CLI\bin\Debug\localizaEDestroi_CLI.pdb
+C:\Users\lucas.rafael\Desktop\repositorios git\Visual-Studio\localizaEDestroI\CLI\localizaEDestroi_CLI\obj\Debug\localizaEDestroi_CLI.csprojAssemblyReference.cache
+C:\Users\lucas.rafael\Desktop\repositorios git\Visual-Studio\localizaEDestroI\CLI\localizaEDestroi_CLI\obj\Debug\localizaEDestroi_CLI.csproj.CoreCompileInputs.cache
+C:\Users\lucas.rafael\Desktop\repositorios git\Visual-Studio\localizaEDestroI\CLI\localizaEDestroi_CLI\obj\Debug\localizaEDestroi_CLI.exe.manifest
+C:\Users\lucas.rafael\Desktop\repositorios git\Visual-Studio\localizaEDestroI\CLI\localizaEDestroi_CLI\obj\Debug\localizaEDestroi_CLI.application
+C:\Users\lucas.rafael\Desktop\repositorios git\Visual-Studio\localizaEDestroI\CLI\localizaEDestroi_CLI\obj\Debug\localizaEDestroi_CLI.exe
+C:\Users\lucas.rafael\Desktop\repositorios git\Visual-Studio\localizaEDestroI\CLI\localizaEDestroi_CLI\obj\Debug\localizaEDestroi_CLI.pdb
