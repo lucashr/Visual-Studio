@@ -3,22 +3,13 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 
+
 namespace localizaEDestroi_CLI.Log
 {
     class GeraTxt
     {
-        //private static long tamArqDir_somador, qtdDir, qtdArqExt, tempoDeExecucao;
-        //private static string tamTotArqExt, tamTotArqDir;
-
-        //public GeraTxt(long _qtdDir, long _tamArqDir_somador, long _qtdArqExt, long _tempoDeExecucao)
-        //{
-        //    qtdDir = _qtdDir;
-        //    tamArqDir_somador = _tamArqDir_somador;
-        //    qtdArqExt = _qtdArqExt;
-        //    tempoDeExecucao = _tempoDeExecucao;
-        //}
-
         static readonly CriaArquivosConfiguracao dirRaiz = new CriaArquivosConfiguracao();
+   
         //Metodo responsavel por criar o arquivo de texto do log
         public void Geratxt()
         {
@@ -51,10 +42,19 @@ namespace localizaEDestroi_CLI.Log
             long qtdDir, string tamTotArqDir, long qtdArqExt, string tamTotArqExt, long tempoDeExecucao, List<string> listaExclusaoEspec)
         {
             List<string> logtxt = new List<string>();
+            clsPesquisa pesquisa = new clsPesquisa();
+
+            string[] diretoriosIgnorados = File.ReadAllLines(pesquisa.LocalArqListDiretoriosIgnorados());
+            string ignoradosNaPesquisa = "";
 
             logtxt.AddRange(listaArquivosDir);
             logtxt.AddRange(listaArquivosExt);
             logtxt.AddRange(listaExclusaoEspec);
+
+            foreach (var dir in diretoriosIgnorados)
+            {
+                ignoradosNaPesquisa += dir;
+            }
 
             int tamLog = logtxt.Count;
 
@@ -83,6 +83,8 @@ namespace localizaEDestroi_CLI.Log
                 File.AppendAllText(LocalLog(), "* Tamanho total dos arquivos: " + tamTotArqExt + "\r\n");
                 File.AppendAllText(LocalLog(), "* Tempo decorrido em HMSms: " + TempoTotalDeExecucao(tempoDeExecucao) + "\r\n");
                 File.AppendAllText(LocalLog(), "* ------------------------------------------------------------------------------------------------------- " + "\r\n");
+                File.AppendAllText(LocalLog(), "* << Ignorados na pesquisa >> " + "\r\n");
+                File.AppendAllText(LocalLog(), "* " + ignoradosNaPesquisa + "\r\n");
                 File.AppendAllText(LocalLog(), "* Arquivos incluidos na pesquisa: " + "\r\n");
                 File.AppendAllText(LocalLog(), "* <<< Por pastas >>>" + "\r\n");
                 File.AppendAllText(LocalLog(), "* " + listaDiretorio2 + "\r\n");
@@ -117,6 +119,8 @@ namespace localizaEDestroi_CLI.Log
             File.AppendAllText(LocalLog(), "* Tamanho total dos arquivos: " + tamTotArqExt + "\r\n");
             File.AppendAllText(LocalLog(), "* Tempo decorrido em HMS: " + TempoTotalDeExecucao(tempoDeExecucao) + "\r\n");
             File.AppendAllText(LocalLog(), "* ------------------------------------------------------------------------------------------------------- " + "\r\n");
+            File.AppendAllText(LocalLog(), "* << Ignorados na pesquisa >> " + "\r\n");
+            File.AppendAllText(LocalLog(), "* " + ignoradosNaPesquisa + "\r\n");
             File.AppendAllText(LocalLog(), "* Arquivos incluidos na pesquisa: " + "\r\n");
             File.AppendAllText(LocalLog(), "* <<< Por pastas >>>" + "\r\n");
             File.AppendAllText(LocalLog(), "* " + listaDiretorio + "\r\n");

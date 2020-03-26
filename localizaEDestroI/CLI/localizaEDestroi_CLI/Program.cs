@@ -4,7 +4,6 @@ using localizaEDestroi_CLI.Pesquisa;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.IO;
 using System.Linq;
 using System.Threading;
 
@@ -63,7 +62,7 @@ namespace localizaEDestroi
             }
 
             Console.WriteLine("------ Especifica iniciada ------");
-            exclusaoExpecifica();
+            ExclusaoExpecifica();
             Console.WriteLine("------ Especifica concluida ------");
 
             Console.WriteLine("------ Exclusao concluida ------");
@@ -71,7 +70,7 @@ namespace localizaEDestroi
 
             GeraTxt geraLog = new GeraTxt();
 
-            Console.WriteLine(geraLog.TempoTotalDeExecucao(tempoDeExecucao));
+            Console.WriteLine("Tempo execucao HMS: " + geraLog.TempoTotalDeExecucao(tempoDeExecucao));
 
             geraLog.Geratxt();
 
@@ -81,22 +80,16 @@ namespace localizaEDestroi
         }
 
         //Metodo para exclusao de arquivos pontuais
-        public static void exclusaoExpecifica()
+        public static void ExclusaoExpecifica()
         {
             Deletar deletar = new Deletar();
-            //var lst = deletar.ExclusaoExpecifica().Item1;
-            listaExclusaoEspec.AddRange(deletar.ExclusaoExpecifica().Item1);
-            //if (lst != null)
-            //{
-                
-            //}            
-
+            listaExclusaoEspec.AddRange(deletar.ExclusaoExpecifica().Item1);    
         }
 
         //Metodo para pesquisa por extensao de arquivos
         public static void PesquisaPorExtensao()
         {
-            Pesquisa pesquisa = new Pesquisa();
+            clsPesquisa pesquisa = new clsPesquisa();
             var ret = pesquisa.PesquisaPorExtensao();
             tamTotArqExt = ret.Item2;
             listaPorExtensao = ret.Item1;
@@ -107,7 +100,7 @@ namespace localizaEDestroi
         //Metodo para pesquisa por diretorio de arquivos
         public static void   PesquisaPorDiretorio()
         {
-            Pesquisa pesquisa = new Pesquisa();
+            clsPesquisa pesquisa = new clsPesquisa();
             var ret = pesquisa.PesquisaPorDiretorio();
             tamTotArqDir = ret.Item2;
             listaPorDiretorio = ret.Item1;

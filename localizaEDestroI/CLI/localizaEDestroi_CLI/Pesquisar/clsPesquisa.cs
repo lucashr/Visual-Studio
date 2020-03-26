@@ -2,13 +2,11 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 
 namespace localizaEDestroi_CLI.Pesquisa
 {
-    class Pesquisa
+    class clsPesquisa
     {
         readonly CriaArquivosConfiguracao dirRaiz = new CriaArquivosConfiguracao();
 
@@ -19,15 +17,17 @@ namespace localizaEDestroi_CLI.Pesquisa
             long tamArqExt, qtdArqExt, tamArqExt_verificador;
             string tamTotArqExt;
             
-            string[] allfiles;  //Lista de diretorios pela pesquisa por extensão
-            string[] linhas = File.ReadAllLines(LocalArqListExExtensao()); //Efetua a leitura do arquivo externo com os parametros da pesquisa
-
+            string[] arquivosEncontrados;  //Lista de diretorios pela pesquisa por extensão
+            string[] listaPesquisaExt = File.ReadAllLines(LocalArqListExExtensao()); //Efetua a leitura do arquivo externo com os parametros da pesquisa
+            string[] diretoriosIgnorados = File.ReadAllLines(LocalArqListDiretoriosIgnorados());
+            
             string extensaoArq = "";
+            string diretoriosIg = "";
 
             tamTotArqExt = "";
             tamArqExt = qtdArqExt = tamArqExt_verificador = 0;
 
-            int contadorLinhas = linhas.Count();
+            int contadorLinhas = listaPesquisaExt.Count();
 
             //Verifica se o arquivo esta vazio
             if (contadorLinhas == 0)
@@ -35,30 +35,46 @@ namespace localizaEDestroi_CLI.Pesquisa
                 return Tuple.Create(listaPorExtensao, tamTotArqExt, qtdArqExt);
             }
 
-            foreach (string item in linhas)
+            foreach (var dir in diretoriosIgnorados)
+            {
+                diretoriosIg += dir;
+            }
+
+            foreach (string item in listaPesquisaExt)
             {
                 extensaoArq += item;
             }
 
-            string[] listaDeArqPorExtensao = extensaoArq.Split(';'); //Quebra o texto para obter os parametros de pesquisa por extensao
+            string[] listaDeArqPorExtensao = extensaoArq.Split(';');
+            string[] diretoriosIgnoradosSplit = diretoriosIg.Split(';'); //Quebra o texto para obter os parametros de pesquisa por extensao
 
             foreach (var item in listaDeArqPorExtensao)
             {
-                //allfiles recebe o caminho absoluto de cada arquivo encontrado a cada iteração do foreach                    
-                allfiles = Directory.GetFiles(dirRaiz.DiretorioRaiz(), "*.*", SearchOption.AllDirectories).Where(s => s.EndsWith("." + item.ToString(), StringComparison.CurrentCulture)).ToArray();
+                //'arquivosEncontrados' recebe o caminho absoluto de cada arquivo encontrado a cada iteração do foreach                    
+                arquivosEncontrados = Directory.GetFiles(dirRaiz.DiretorioRaiz(), "*.*", SearchOption.AllDirectories).Where(s => s.EndsWith("." + item.ToString(), StringComparison.CurrentCulture)).ToArray();
 
-                foreach (var file in allfiles)
+                foreach (var file in arquivosEncontrados)
                 {
-                    string[] teste = Convert.ToString(file).Split('\\');
+                    string[] arqEncontradosSplit = Convert.ToString(file).Split('\\');     
                     bool verificador = false; //Usado para verificar se o caminho possui algum dos parametros do filtro
 
-                    foreach (var ch in teste)
+                    foreach (var ch in arqEncontradosSplit)
                     {
-                        //Filtro usado para ignorar determinadas pastas na pesquisa
-                        if (ch == "target" || ch == ".jazz5" || ch == ".git" || ch == ".metadata" || ch == "Parametros pesquisa localizaEDestroi" || ch == "LogDeletados")
+                        foreach (var dirIgnorado in diretoriosIgnoradosSplit)
                         {
-                            verificador = true;
+                            //Filtro usado para ignorar determinadas pastas na pesquisa
+                            if (ch == dirIgnorado)
+                            {
+                                verificador = true;
+                                break;
+                            }
                         }
+
+                        if (verificador)
+                        {
+                            break;
+                        }
+
                     }
 
                     //Entrara na lista apenas se o caminho nao conter nenhum dos parametros do filtro
@@ -109,14 +125,26 @@ namespace localizaEDestroi_CLI.Pesquisa
             return localArq;
         }
 
+        //Diretorio do arquivo de lista de exclusoes por extensao completo mais o nome do arquivo
+        public string LocalArqListDiretoriosIgnorados()
+        {
+            string localArq = dirRaiz.LocalArqListDiretoriosIgnorados();
+            return localArq;
+        }
+
         //Metodo para pesquisa por diretorio de arquivos
         public Tuple<List<string>, string, long> PesquisaPorDiretorio()
         {
             List<string> listaPorDiretorio = new List<string>();     //List contendo o resultado da pesquisa por nome
             List<string> tempAllfiles2 = new List<string>(); //Armazena partes de um caminho para iteracao de arquivos
+            
+            string[] diretoriosIgnorados = File.ReadAllLines(LocalArqListDiretoriosIgnorados());
             string[] allfiles2; //Lista de diretorios pela pesquisa por nome            
+            
             string DirArq = "";
             string tamTotArqDir = "";
+            string diretoriosIg = "";
+            
             DirectoryInfo tamDir_verificador;
             long tamArqDir_somador, qtdDir;
 
@@ -131,13 +159,18 @@ namespace localizaEDestroi_CLI.Pesquisa
                 return Tuple.Create(listaPorDiretorio, tamTotArqDir, qtdDir);
             }
 
+            foreach (var dir in diretoriosIgnorados)
+            {
+                diretoriosIg += dir;
+            }
+
             foreach (string item in linhas)
             {
                 DirArq += item;
             }
 
             string[] listaDeArqPorExtensao = DirArq.Split(';');
-            // 
+            string[] diretoriosIgnoradosSplit = diretoriosIg.Split(';'); //Lista diretorios ignorados
 
             foreach (var item2 in listaDeArqPorExtensao)
             {
@@ -162,15 +195,24 @@ namespace localizaEDestroi_CLI.Pesquisa
 
             foreach (var file2 in tempAllfiles2)
             {
-                string[] teste = Convert.ToString(file2).Split('\\');
+                string[] dirEncontradosSplit = Convert.ToString(file2).Split('\\');
                 bool verificador = false;
 
-                foreach (var ch in teste)
+                foreach (var dirIgnorado in diretoriosIgnoradosSplit)
                 {
-                    if (ch == "target" || ch == ".jazz5" || ch == ".git" || ch == ".metadata" || ch == "Parametros pesquisa localizaEDestroi" || ch == "LogDeletados")
+                    foreach (var ch in dirEncontradosSplit)
                     {
-                        verificador = true;
+                        if (ch == dirIgnorado)
+                        {
+                            verificador = true;
+                        }
                     }
+
+                    if (verificador)
+                    {
+                        break;
+                    }
+
                 }
 
                 if (!verificador)

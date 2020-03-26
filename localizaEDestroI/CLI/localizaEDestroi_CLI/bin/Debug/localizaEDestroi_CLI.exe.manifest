@@ -42,14 +42,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="localizaEDestroi_CLI.exe" size="15872">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="localizaEDestroi_CLI.exe" size="16384">
       <assemblyIdentity name="localizaEDestroi_CLI" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>w7T6lgt30tFq7v8eiAlN1pQ6+qqWQ7F4xd4hM45kzCc=</dsig:DigestValue>
+        <dsig:DigestValue>nXa2K68YEb6NGuHaDSUOrAv8OJ2MpNodzNc9JuxEe9c=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

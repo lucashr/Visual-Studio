@@ -78,8 +78,7 @@
     <Compile Include="Log\GeraTxt.cs" />
     <Compile Include="Pesquisar\CriaArquivosConfiguracao.cs" />
     <Compile Include="Pesquisar\FormataTamanhoExibicaoArquivo.cs" />
-    <Compile Include="Pesquisar\GeraLogTxt.cs" />
-    <Compile Include="Pesquisar\Pesquisa.cs" />
+    <Compile Include="Pesquisar\clsPesquisa.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

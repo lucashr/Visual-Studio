@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace localizaEDestroi_CLI.Pesquisa
 {
@@ -30,6 +27,11 @@ namespace localizaEDestroi_CLI.Pesquisa
             if (!File.Exists(LocalArqListExExtensao())) //Verifica se o arquivo lista de exclusoes por extensao existe
             {
                 File.Create(LocalArqListExExtensao()).Close();
+            }
+
+            if (!File.Exists(LocalArqListDiretoriosIgnorados())) //Verifica se o arquivo diretorios ignorados existe
+            {
+                File.Create(LocalArqListDiretoriosIgnorados()).Close();
             }
 
         }
@@ -62,6 +64,14 @@ namespace localizaEDestroi_CLI.Pesquisa
         public string LocalArqListExExtensao()
         {
             string nomeArq = "lista de exclusoes por extensao.txt";
+            string localArq = DirParametrosDePesquisa() + "\\" + nomeArq;
+            return localArq;
+        }
+
+        //Diretorio do arquivo de lista de diretorios ignoradas completo mais o nome do arquivo
+        public string LocalArqListDiretoriosIgnorados()
+        {
+            string nomeArq = "lista de diretorios ignorados.txt";
             string localArq = DirParametrosDePesquisa() + "\\" + nomeArq;
             return localArq;
         }
