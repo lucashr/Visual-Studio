@@ -22,7 +22,7 @@ namespace localizaEDestroi_CLI.Pesquisa
             string[] diretoriosIgnorados = File.ReadAllLines(LocalArqListDiretoriosIgnorados());
             
             string extensaoArq = "";
-            string diretoriosIg = "";
+            string diretoriosIg = "Parametros pesquisa localizaEDestroi;LogDeletados;localizaEDestroi_CLI.exe;";
 
             tamTotArqExt = "";
             tamArqExt = qtdArqExt = tamArqExt_verificador = 0;
@@ -143,8 +143,8 @@ namespace localizaEDestroi_CLI.Pesquisa
             
             string DirArq = "";
             string tamTotArqDir = "";
-            string diretoriosIg = "";
-            
+            string diretoriosIg = "Parametros pesquisa localizaEDestroi;LogDeletados;localizaEDestroi_CLI.exe;";
+
             DirectoryInfo tamDir_verificador;
             long tamArqDir_somador, qtdDir;
 

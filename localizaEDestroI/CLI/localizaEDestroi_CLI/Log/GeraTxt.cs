@@ -81,7 +81,7 @@ namespace localizaEDestroi_CLI.Log
                 File.AppendAllText(LocalLog(), "* Tamanho total dos diretorios: " + tamTotArqDir + "\r\n");
                 File.AppendAllText(LocalLog(), "* Quantidade de arquivos: " + qtdArqExt + "\r\n");
                 File.AppendAllText(LocalLog(), "* Tamanho total dos arquivos: " + tamTotArqExt + "\r\n");
-                File.AppendAllText(LocalLog(), "* Tempo decorrido em HMSms: " + TempoTotalDeExecucao(tempoDeExecucao) + "\r\n");
+                File.AppendAllText(LocalLog(), "* Tempo decorrido em HMS: " + TempoTotalDeExecucao(tempoDeExecucao) + "\r\n");
                 File.AppendAllText(LocalLog(), "* ------------------------------------------------------------------------------------------------------- " + "\r\n");
                 File.AppendAllText(LocalLog(), "* << Ignorados na pesquisa >> " + "\r\n");
                 File.AppendAllText(LocalLog(), "* " + ignoradosNaPesquisa + "\r\n");
